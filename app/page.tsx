@@ -7,18 +7,28 @@ export default function Home() {
   const testimonials = [
     {
       id: '1',
+      title: 'Відгук Оля',
+      youtubeId: 'gpPFMAvc2vI', // Replace with actual testimonial video IDs
+    },
+    {
+      id: '1',
+      title: 'Отзыв Валерия',
+      youtubeId: 'Q5sK6CtgGjk', // Replace with actual testimonial video IDs
+    },
+    {
+      id: '1',
       title: 'Отзыв Elena',
       youtubeId: 'K8YPEOkdExg', // Replace with actual testimonial video IDs
     },
     {
-      id: '2',
-      title: 'Отзыв клиента 2',
-      youtubeId: 'dQw4w9WgXcQ', // Replace with actual testimonial video IDs
+      id: '1',
+      title: 'Отзыв Александр',
+      youtubeId: '4l5cSAPt57U', // Replace with actual testimonial video IDs
     },
     {
       id: '3',
-      title: 'Отзыв клиента 3',
-      youtubeId: 'dQw4w9WgXcQ', // Replace with actual testimonial video IDs
+      title: 'Отзыв Наталия',
+      youtubeId: '-1Ms6Jk2V2M', // Replace with actual testimonial video IDs
     },
   ];
 
