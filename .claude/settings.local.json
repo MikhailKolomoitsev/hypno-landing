@@ -1,7 +1,8 @@
 {
   "permissions": {
     "allow": [
-      "Bash(npm install @tsparticles/react @tsparticles/slim)"
+      "Bash(npm install @tsparticles/react @tsparticles/slim)",
+      "Bash(npm run build)"
     ],
     "deny": [],
     "ask": []

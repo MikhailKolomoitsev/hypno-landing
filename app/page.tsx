@@ -1,8 +1,43 @@
+'use client';
+
 import Image from 'next/image';
+import { useState } from 'react';
 import VideoCarousel from './components/VideoCarousel';
 import ParticlesBackground from './components/ParticlesBackground';
 
 export default function Home() {
+  const [email, setEmail] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [message, setMessage] = useState<{ type: 'success' | 'error'; text: string } | null>(null);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setMessage(null);
+
+    try {
+      const response = await fetch('/api/subscribe', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setMessage({ type: 'success', text: 'Гайд отправлен на ваш email! Проверьте входящие.' });
+        setEmail('');
+      } else {
+        setMessage({ type: 'error', text: data.error || 'Что-то пошло не так. Попробуйте снова.' });
+      }
+    } catch (error) {
+      setMessage({ type: 'error', text: 'Ошибка подключения. Попробуйте позже.' });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   const testimonials = [
     {
@@ -90,6 +125,47 @@ export default function Home() {
             Истории людей, которые изменили свою жизнь благодаря гипнотерапии
           </p>
           <VideoCarousel testimonials={testimonials} />
+        </div>
+
+        {/* Email Guide Section */}
+        <div className="mt-16 sm:mt-20 md:mt-24 max-w-3xl mx-auto">
+          <div className="bg-gradient-to-br from-purple-600/20 to-purple-800/20 backdrop-blur-sm rounded-xl border border-purple-400/30 p-6 sm:p-8 md:p-10">
+            <div className="text-center mb-6">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-3 sm:mb-4">
+                Получить гайд по Решениям
+              </h2>
+              <p className="text-base sm:text-lg text-gray-300">
+                Узнайте, как подружить эмоциональную и рациональную часть и принимать решения во благо себе
+              </p>
+            </div>
+            <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 sm:gap-4 max-w-xl mx-auto">
+              <input
+                type="email"
+                placeholder="Введите ваш email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                disabled={isSubmitting}
+                className="flex-1 px-4 sm:px-6 py-3 sm:py-4 rounded-full bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-400 focus:border-transparent backdrop-blur-sm disabled:opacity-50 disabled:cursor-not-allowed"
+              />
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className="px-6 sm:px-8 py-3 sm:py-4 bg-purple-600 hover:bg-purple-500 active:bg-purple-700 text-white font-semibold rounded-full transition-all duration-200 shadow-lg shadow-purple-500/50 hover:shadow-xl hover:shadow-purple-500/60 hover:scale-105 active:scale-100 whitespace-nowrap disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+              >
+                {isSubmitting ? 'Отправка...' : 'Получить гайд'}
+              </button>
+            </form>
+            {message && (
+              <div className={`mt-4 text-center px-4 py-3 rounded-lg ${
+                message.type === 'success'
+                  ? 'bg-green-500/20 border border-green-500/30 text-green-300'
+                  : 'bg-red-500/20 border border-red-500/30 text-red-300'
+              }`}>
+                {message.text}
+              </div>
+            )}
+          </div>
         </div>
 
         {/* Additional Info Section */}
