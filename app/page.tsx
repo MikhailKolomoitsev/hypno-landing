@@ -5,6 +5,7 @@ import { useState } from 'react';
 import VideoCarousel from './components/VideoCarousel';
 import ParticlesBackground from './components/ParticlesBackground';
 
+// Force rebuild - v1.1
 export default function Home() {
   const [email, setEmail] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
