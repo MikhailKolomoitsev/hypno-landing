@@ -76,6 +76,21 @@ export default function Home() {
       title: '',
       youtubeId: 'FQ40Du6B4mA', // Replace with actual testimonial video IDs
     },
+    {
+      id: '8',
+      title: '',
+      youtubeId: 'EULa61gySNE', // Replace with actual testimonial video IDs
+    },
+    {
+      id: '9',
+      title: '',
+      youtubeId: '71CglstaVWM', // Replace with actual testimonial video IDs
+    },
+    {
+      id: '10',
+      title: '',
+      youtubeId: '09mqrFk_VzM', // Replace with actual testimonial video IDs
+    },
 
   ];
 
