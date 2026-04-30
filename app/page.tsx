@@ -119,7 +119,7 @@ export default function Home() {
           <div className="max-w-4xl mx-auto px-2 sm:px-4">
             <div className="aspect-video w-full rounded-lg sm:rounded-xl overflow-hidden shadow-xl sm:shadow-2xl bg-black mb-6 sm:mb-8">
               <iframe
-                src="https://youtu.be/O8prn_Gi4Bw"
+                src="https://youtu.be/O8prn_Gi4Bw?si=opPK9528BgIGI23q"
                 title="Введение в гипнотерапию"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
