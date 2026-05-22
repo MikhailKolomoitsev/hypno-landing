@@ -9,8 +9,8 @@ const resend = process.env.RESEND_API_KEY
   ? new Resend(process.env.RESEND_API_KEY)
   : null;
 
-// Path to store emails
-const emailsFilePath = path.join(process.cwd(), 'data', 'subscribers.json');
+// /tmp works both locally and on Vercel serverless
+const emailsFilePath = '/tmp/subscribers.json';
 
 // Function to read existing emails
 async function readEmails() {
@@ -42,14 +42,6 @@ async function saveEmail(email: string) {
     };
 
     emails.push(newEntry);
-
-    // Ensure data directory exists
-    const dataDir = path.join(process.cwd(), 'data');
-    try {
-      await fs.mkdir(dataDir, { recursive: true });
-    } catch (err) {
-      // Directory might already exist
-    }
 
     // Write to file
     await fs.writeFile(emailsFilePath, JSON.stringify(emails, null, 2));
