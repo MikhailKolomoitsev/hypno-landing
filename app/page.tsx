@@ -133,7 +133,7 @@ export default function Home() {
           {/* Social proof badge */}
           <div className="mb-5 flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-sm text-sm text-gray-300">
             <span className="text-yellow-400 tracking-tight">★★★★★</span>
-            <span className="text-gray-400">100+ клиентов · 3 года практики</span>
+            <span className="text-gray-400">200+ клиентов · 5 лет практики</span>
           </div>
 
           <h1 className="text-center font-bold leading-[1.05] mb-5 max-w-4xl" style={{letterSpacing: '-0.04em'}}>
@@ -289,8 +289,8 @@ export default function Home() {
 
             <div className="grid grid-cols-3 gap-4 sm:gap-6 mb-14">
               {[
-                { value: '3+',   label: 'лет практики', sub: 'опыт и квалификация' },
-                { value: '100+', label: 'клиентов',      sub: 'из 12 стран мира' },
+                { value: '5+',   label: 'лет практики', sub: 'опыт и квалификация' },
+                { value: '200+', label: 'клиентов',      sub: 'из 12 стран мира' },
                 { value: '100%', label: 'гарантия',      sub: 'возврат без вопросов' },
               ].map((stat) => (
                 <div key={stat.label} className="text-center p-5 sm:p-6 rounded-2xl border border-white/8 bg-white/3 backdrop-blur-sm">
@@ -401,7 +401,7 @@ export default function Home() {
                 Готовы к изменениям?
               </h2>
               <p className="text-gray-400 text-sm mb-2 leading-relaxed">
-                Напишите кодовое слово <span className="text-white font-semibold">«Перезапуск»</span> — и я лично разберу вашу ситуацию на бесплатной 15-минутной консультации.
+                Напишите кодовое слово <span className="text-white font-semibold">«Перезапуск»</span> — и я лично разберу вашу ситуацию на бесплатной 30-минутной консультации.
               </p>
 
               <a
@@ -426,6 +426,71 @@ export default function Home() {
         </section>
 
       </div>
+
+      {/* Schema.org JSON-LD */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify([
+            {
+              "@context": "https://schema.org",
+              "@type": "Person",
+              "name": "Михаил Коломойцев",
+              "url": "https://kolomoitsev.com",
+              "jobTitle": "Гипнотерапевт",
+              "description": "Профессиональный гипнотерапевт с 5+ летним опытом. 200+ клиентов из 12 стран мира.",
+              "sameAs": ["https://t.me/mykhailo_elmejor"],
+              "knowsAbout": ["Гипнотерапия", "Клинический гипноз", "Психотерапия", "Регрессионная терапия"],
+            },
+            {
+              "@context": "https://schema.org",
+              "@type": "FAQPage",
+              "mainEntity": [
+                {
+                  "@type": "Question",
+                  "name": "Можно ли застрять в гипнозе или потерять контроль?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Нет. Гипноз — это не сон и не потеря сознания. Вы остаётесь в полном осознании и всегда можете выйти из транса в любой момент. Это больше похоже на глубокое расслабление с фокусом.",
+                  },
+                },
+                {
+                  "@type": "Question",
+                  "name": "Сколько сессий нужно для результата?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Большинство клиентов замечают ощутимые изменения уже после 1–2 сессий. Глубокая трансформация обычно происходит за 3–6 встреч, в зависимости от запроса.",
+                  },
+                },
+                {
+                  "@type": "Question",
+                  "name": "Что если меня нельзя загипнотизировать?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Гипнозу поддаются все люди без исключения — вопрос лишь в глубине транса. Даже лёгкий транс достаточен для работы с подсознательными программами.",
+                  },
+                },
+                {
+                  "@type": "Question",
+                  "name": "Сессии онлайн так же эффективны, как очные?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Да. Эффективность онлайн-сессий ничуть не уступает очным. Главное — тихое место и наушники. Тысячи клиентов по всему миру работают онлайн с отличными результатами.",
+                  },
+                },
+                {
+                  "@type": "Question",
+                  "name": "Что если результата не будет?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Я даю 100% гарантию результата. Если после сессии вы не почувствуете изменений — верну деньги полностью, без вопросов.",
+                  },
+                },
+              ],
+            },
+          ]),
+        }}
+      />
     </>
   );
 }
