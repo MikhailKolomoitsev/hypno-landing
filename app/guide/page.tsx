@@ -1,11 +1,9 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import ParticlesBackground from '../components/ParticlesBackground';
 
 export default function Guide() {
   return (
     <div className="min-h-screen relative">
-      <ParticlesBackground />
       <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 md:py-20 relative z-10">
         {/* Navigation Back */}
         <div className="mb-8">
