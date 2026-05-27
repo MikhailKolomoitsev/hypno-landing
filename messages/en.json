@@ -1,0 +1,85 @@
+{
+  "sticky": "Free 30-min Consultation",
+  "hero": {
+    "badge": "200+ clients · 5 years of practice",
+    "title1": "Transformation through",
+    "title2": "Hypnotherapy",
+    "subtitle": "Unlock the path to inner harmony and free yourself from what holds you back",
+    "prop1": "No medication",
+    "prop2": "Online or in-person",
+    "prop3": "Money-back guarantee",
+    "formTitle": "Get the free guide",
+    "formDesc": "How to align your emotional and rational mind — and make decisions without inner conflict",
+    "formPlaceholder": "Enter your email",
+    "formButton": "Get it free →",
+    "formSubmitting": "Sending...",
+    "formNoSpam": "🔒 No spam. Just the guide.",
+    "formSuccess": "Guide sent to your email! Check your inbox.",
+    "formError": "Something went wrong. Please try again.",
+    "formNetworkError": "Connection error. Please try later."
+  },
+  "problems": {
+    "label": "Sound familiar?",
+    "title": "If even one of these resonates with you —",
+    "titleAccent": "you're in the right place",
+    "item1": "You know what you should do — but you keep sabotaging yourself",
+    "item2": "Anxiety or fear controls your decisions",
+    "item3": "You repeat the same patterns in relationships or work",
+    "item4": "You procrastinate even when the deadline is on fire",
+    "item5": "You can't get rid of intrusive thoughts or habits",
+    "item6": "You feel like you're living someone else's life",
+    "footer": "This is not a character flaw or lack of willpower.",
+    "footerCont": "These are subconscious programs — and hypnotherapy works directly with them."
+  },
+  "video": {
+    "label": "Watch · 3 minutes",
+    "title": "How it works",
+    "desc": "Mykhailo explains the method and why it delivers results where other approaches failed",
+    "cta": "Book your first session"
+  },
+  "stats": {
+    "years": "years of practice",
+    "yearsSub": "experience & qualifications",
+    "clients": "clients",
+    "clientsSub": "from 12 countries",
+    "guarantee": "guarantee",
+    "guaranteeSub": "no-questions refund",
+    "reasonsTitle": "Three reasons why it works",
+    "reason1Title": "Completely safe",
+    "reason1Text": "You remain fully conscious and in control. No suggestions against your will — only what you yourself want to change.",
+    "reason2Title": "Fast results",
+    "reason2Text": "1–3 sessions instead of years of therapy. We work on the root cause, not the symptom. No results — full refund.",
+    "reason3Title": "Personalised approach",
+    "reason3Text": "Every session is built around your specific request. No templates — only work tailored to your unique situation."
+  },
+  "testimonials": {
+    "label": "Real results",
+    "title": "What clients say",
+    "cta": "I want results like this →"
+  },
+  "faq": {
+    "label": "Common questions",
+    "title": "Addressing your concerns",
+    "q1": "Can you get stuck in hypnosis or lose control?",
+    "a1": "No. Hypnosis is not sleep or loss of consciousness. You remain fully aware and can exit the trance at any moment. It's more like deep relaxation with focus.",
+    "q2": "How many sessions are needed to see results?",
+    "a2": "Most clients notice tangible changes after just 1–2 sessions. Deeper transformation typically happens over 3–6 sessions, depending on the issue.",
+    "q3": "What if I can't be hypnotised?",
+    "a3": "Everyone can be hypnotised — it's only a question of depth. Even a light trance is sufficient for working with subconscious programs.",
+    "q4": "Are online sessions as effective as in-person?",
+    "a4": "Yes. Online sessions are just as effective. All you need is a quiet space and headphones. Thousands of clients worldwide get excellent results online.",
+    "q5": "What if I don't get results?",
+    "a5": "I offer a 100% results guarantee. If you don't feel a change after the session — I'll refund you in full, no questions asked."
+  },
+  "cta": {
+    "badge": "100% Results Guarantee",
+    "spots": "Only 3 spots left this month",
+    "title": "Ready for change?",
+    "desc": "Send the code word",
+    "codeword": "\"Restart\"",
+    "descCont": "— and I'll personally walk through your situation in a free 30-minute consultation.",
+    "button": "Send \"Restart\"",
+    "footer": "I respond within an hour · No commitment",
+    "copyright": "Professional Hypnotherapy · kolomoitsev.com"
+  }
+}

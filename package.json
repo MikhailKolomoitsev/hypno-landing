@@ -21,6 +21,7 @@
     "@tsparticles/react": "^3.0.0",
     "@tsparticles/slim": "^3.9.1",
     "next": "16.0.8",
+    "next-intl": "^4.12.0",
     "react": "19.2.1",
     "react-dom": "19.2.1",
     "react-email": "^5.0.7",
