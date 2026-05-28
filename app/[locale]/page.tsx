@@ -275,8 +275,8 @@ export default function Home() {
 
             <div className="grid grid-cols-3 gap-4 sm:gap-6 mb-14">
               {[
-                { value: '5+',   label: t('stats.years'),     sub: t('stats.yearsSub') },
-                { value: '200+', label: t('stats.clients'),   sub: t('stats.clientsSub') },
+                { value: '3+',   label: t('stats.years'),     sub: t('stats.yearsSub') },
+                { value: '100+', label: t('stats.clients'),   sub: t('stats.clientsSub') },
                 { value: '100%', label: t('stats.guarantee'), sub: t('stats.guaranteeSub') },
               ].map((stat) => (
                 <div key={stat.label} className="text-center p-5 sm:p-6 rounded-2xl border border-white/8 bg-white/3 backdrop-blur-sm">
