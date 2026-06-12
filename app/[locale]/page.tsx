@@ -1,12 +1,13 @@
 'use client';
 
 import Image from 'next/image';
-import { useState, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useTranslations } from 'next-intl';
 import VideoCarousel from './components/VideoCarousel';
 import LanguageSwitcher from './components/LanguageSwitcher';
+import SiteNav from './components/SiteNav';
 
-const SECTIONS = ['hero', 'problems', 'video', 'stats', 'testimonials', 'faq', 'cta'];
+const SECTIONS = ['hero', 'problems', 'video', 'stats', 'about', 'testimonials', 'faq', 'cta'];
 
 const testimonials = [
   { id: '1',  title: 'Відгук Оля',      youtubeId: 'gpPFMAvc2vI' },
@@ -24,10 +25,17 @@ const testimonials = [
 
 export default function Home() {
   const t = useTranslations();
+  // Lock body scroll for snap experience — restore on unmount
+  useEffect(() => {
+    document.body.classList.add('snap-page');
+    return () => document.body.classList.remove('snap-page');
+  }, []);
+
   const [email, setEmail] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [message, setMessage] = useState<{ type: 'success' | 'error'; text: string } | null>(null);
   const [activeSection, setActiveSection] = useState(0);
+  const [certOpen, setCertOpen] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -94,8 +102,9 @@ export default function Home() {
         {t('sticky')}
       </a>
 
-      {/* Language switcher — top right */}
-      <div className="fixed top-5 right-5 z-50">
+      {/* Top right controls: nav menu + language switcher */}
+      <div className="fixed top-5 right-5 z-50 flex items-center gap-2">
+        <SiteNav />
         <LanguageSwitcher />
       </div>
 
@@ -121,75 +130,98 @@ export default function Home() {
       >
 
         {/* ─── 1. HERO ──────────────────────────────────────── */}
-        <section data-section="hero" className="snap-start snap-always h-screen flex flex-col items-center justify-center px-4 relative">
+        <section data-section="hero" className="snap-start snap-always h-screen flex items-center justify-center px-4 relative">
 
-          {/* Social proof badge */}
-          <div className="mb-5 flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-sm text-sm text-gray-300">
-            <span className="text-yellow-400 tracking-tight">★★★★★</span>
-            <span className="text-gray-400">{t('hero.badge')}</span>
-          </div>
+          <div className="w-full max-w-6xl flex flex-col lg:flex-row items-center gap-6 lg:gap-14">
 
-          <h1 className="text-center font-bold leading-[1.05] mb-5 max-w-4xl" style={{letterSpacing: '-0.04em'}}>
-            <span className="block text-5xl sm:text-7xl md:text-8xl text-white">
-              {t('hero.title1')}
-            </span>
-            <span className="block text-5xl sm:text-7xl md:text-8xl bg-gradient-to-r from-green-400 via-emerald-300 to-teal-400 bg-clip-text text-transparent mt-1">
-              {t('hero.title2')}
-            </span>
-          </h1>
+            {/* Left: text + form */}
+            <div className="flex-1 flex flex-col items-center lg:items-start text-center lg:text-left">
 
-          <p className="text-shimmer text-center text-lg sm:text-xl max-w-xl mb-3 leading-relaxed font-medium">
-            {t('hero.subtitle')}
-          </p>
+              {/* Social proof badge */}
+              <div className="mb-5 flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-sm text-sm text-gray-300">
+                <span className="text-yellow-400 tracking-tight">★★★★★</span>
+                <span className="text-gray-400">{t('hero.badge')}</span>
+              </div>
 
-          {/* Value props row */}
-          <div className="flex items-center gap-4 mb-10 text-xs text-gray-500 flex-wrap justify-center">
-            <span className="flex items-center gap-1"><span className="text-green-400">✓</span> {t('hero.prop1')}</span>
-            <span className="w-px h-3 bg-white/10" />
-            <span className="flex items-center gap-1"><span className="text-green-400">✓</span> {t('hero.prop2')}</span>
-            <span className="w-px h-3 bg-white/10" />
-            <span className="flex items-center gap-1"><span className="text-green-400">✓</span> {t('hero.prop3')}</span>
-          </div>
+              <h1 className="font-bold leading-[1.05] mb-5 max-w-2xl" style={{letterSpacing: '-0.04em'}}>
+                <span className="block text-5xl sm:text-7xl md:text-8xl lg:text-6xl xl:text-7xl text-white">
+                  {t('hero.title1')}
+                </span>
+                <span className="block text-5xl sm:text-7xl md:text-8xl lg:text-6xl xl:text-7xl bg-gradient-to-r from-green-400 via-emerald-300 to-teal-400 bg-clip-text text-transparent mt-1">
+                  {t('hero.title2')}
+                </span>
+              </h1>
 
-          {/* Email form */}
-          <div className="w-full max-w-2xl">
-            <div className="relative rounded-2xl border border-white/10 bg-white/5 backdrop-blur-md p-7 shadow-2xl shadow-purple-900/20">
-              <div className="absolute -inset-px rounded-2xl bg-gradient-to-br from-purple-500/15 to-transparent pointer-events-none" />
-              <h2 className="text-white text-xl font-bold text-center mb-1">
-                {t('hero.formTitle')}
-              </h2>
-              <p className="text-gray-500 text-xs text-center mb-5">
-                {t('hero.formDesc')}
+              <p className="text-shimmer text-lg sm:text-xl max-w-xl mb-3 leading-relaxed font-medium">
+                {t('hero.subtitle')}
               </p>
-              <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3">
-                <input
-                  type="email"
-                  placeholder={t('hero.formPlaceholder')}
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                  disabled={isSubmitting}
-                  className="flex-1 px-5 py-3.5 rounded-xl bg-white/10 border border-white/15 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all disabled:opacity-50 text-sm"
-                />
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="px-7 py-3.5 bg-gradient-to-r from-purple-600 to-purple-500 hover:from-purple-500 hover:to-purple-400 text-white font-semibold rounded-xl transition-all duration-200 shadow-lg shadow-purple-700/40 hover:scale-105 active:scale-100 whitespace-nowrap disabled:opacity-50 text-sm"
-                >
-                  {isSubmitting ? t('hero.formSubmitting') : t('hero.formButton')}
-                </button>
-              </form>
-              <p className="text-center text-xs text-gray-600 mt-3">{t('hero.formNoSpam')}</p>
-              {message && (
-                <div className={`mt-3 text-center text-sm px-4 py-3 rounded-xl ${
-                  message.type === 'success'
-                    ? 'bg-green-500/10 border border-green-500/20 text-green-400'
-                    : 'bg-red-500/10 border border-red-500/20 text-red-400'
-                }`}>
-                  {message.text}
+
+              {/* Value props row */}
+              <div className="flex items-center gap-4 mb-8 text-xs text-gray-500 flex-wrap justify-center lg:justify-start">
+                <span className="flex items-center gap-1"><span className="text-green-400">✓</span> {t('hero.prop1')}</span>
+                <span className="w-px h-3 bg-white/10" />
+                <span className="flex items-center gap-1"><span className="text-green-400">✓</span> {t('hero.prop2')}</span>
+                <span className="w-px h-3 bg-white/10" />
+                <span className="flex items-center gap-1"><span className="text-green-400">✓</span> {t('hero.prop3')}</span>
+              </div>
+
+              {/* Email form */}
+              <div className="w-full max-w-2xl lg:max-w-lg">
+                <div className="relative rounded-2xl border border-white/10 bg-white/5 backdrop-blur-md p-7 shadow-2xl shadow-purple-900/20">
+                  <div className="absolute -inset-px rounded-2xl bg-gradient-to-br from-purple-500/15 to-transparent pointer-events-none" />
+                  <h2 className="text-white text-xl font-bold text-center mb-1">
+                    {t('hero.formTitle')}
+                  </h2>
+                  <p className="text-gray-500 text-xs text-center mb-5">
+                    {t('hero.formDesc')}
+                  </p>
+                  <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3">
+                    <input
+                      type="email"
+                      placeholder={t('hero.formPlaceholder')}
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      required
+                      disabled={isSubmitting}
+                      className="flex-1 px-5 py-3.5 rounded-xl bg-white/10 border border-white/15 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all disabled:opacity-50 text-sm"
+                    />
+                    <button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="px-7 py-3.5 bg-gradient-to-r from-purple-600 to-purple-500 hover:from-purple-500 hover:to-purple-400 text-white font-semibold rounded-xl transition-all duration-200 shadow-lg shadow-purple-700/40 hover:scale-105 active:scale-100 whitespace-nowrap disabled:opacity-50 text-sm"
+                    >
+                      {isSubmitting ? t('hero.formSubmitting') : t('hero.formButton')}
+                    </button>
+                  </form>
+                  <p className="text-center text-xs text-gray-600 mt-3">{t('hero.formNoSpam')}</p>
+                  {message && (
+                    <div className={`mt-3 text-center text-sm px-4 py-3 rounded-xl ${
+                      message.type === 'success'
+                        ? 'bg-green-500/10 border border-green-500/20 text-green-400'
+                        : 'bg-red-500/10 border border-red-500/20 text-red-400'
+                    }`}>
+                      {message.text}
+                    </div>
+                  )}
                 </div>
-              )}
+              </div>
             </div>
+
+            {/* Right: photo — desktop only */}
+            <div className="hidden lg:flex flex-col items-center gap-3 flex-shrink-0">
+              <div className="relative w-64 xl:w-72 h-80 xl:h-96 rounded-3xl overflow-hidden border border-white/10 shadow-2xl shadow-purple-900/30">
+                <Image
+                  src="/hero-photo.jpg"
+                  alt="Михайло Коломийцев — гіпнотерапевт онлайн"
+                  fill
+                  className="object-cover object-top"
+                />
+              </div>
+              <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-green-500/10 border border-green-500/20 text-xs text-green-400 font-medium">
+                🎓 {t('hero.certBadge')}
+              </div>
+            </div>
+
           </div>
 
           <button onClick={() => scrollToSection(1)} className="absolute bottom-7 left-1/2 -translate-x-1/2 text-gray-600 hover:text-gray-400 transition-colors animate-bounce">
@@ -309,21 +341,70 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ─── 5. TESTIMONIALS ──────────────────────────────── */}
+        {/* ─── 5. ABOUT + CERTIFICATE ───────────────────────── */}
+        <section data-section="about" className="snap-start snap-always h-screen flex flex-col items-center justify-center px-4">
+          <div className="w-full max-w-5xl flex flex-col lg:flex-row gap-10 items-center">
+
+            {/* Certificate image */}
+            <div className="flex-shrink-0 flex flex-col items-center">
+              <button
+                onClick={() => setCertOpen(true)}
+                className="relative w-72 sm:w-80 h-52 sm:h-56 rounded-2xl overflow-hidden border border-white/10 shadow-2xl group cursor-zoom-in"
+                aria-label="Відкрити сертифікат"
+              >
+                <Image
+                  src="/certificate.jpg"
+                  alt="Сертифікат Certified Master Hypnotherapist — International Academy of Hypnosis"
+                  fill
+                  className="object-cover transition-transform duration-300 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
+                  <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/60 text-white text-xs px-3 py-1.5 rounded-full backdrop-blur-sm">
+                    Збільшити
+                  </span>
+                </div>
+              </button>
+              <p className="text-center text-xs text-gray-600 mt-3">International Academy of Hypnosis · London, UK</p>
+            </div>
+
+            {/* Text + not-for list */}
+            <div className="flex-1">
+              <span className="text-xs font-semibold tracking-widest text-green-400 uppercase">{t('about.label')}</span>
+              <h2 className="text-white text-3xl sm:text-4xl font-bold mt-2 mb-4" style={{letterSpacing: '-0.02em'}}>
+                {t('about.title')}
+              </h2>
+              <p className="text-gray-400 text-sm leading-relaxed mb-6">
+                {t('about.text')}
+              </p>
+
+              <h3 className="text-white text-sm font-semibold mb-3">{t('about.notForTitle')}</h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                {(['notFor1', 'notFor2', 'notFor3', 'notFor4'] as const).map((key) => (
+                  <div key={key} className="flex items-start gap-2.5 p-3 rounded-xl border border-red-500/10 bg-red-500/5 text-sm text-gray-500">
+                    <span className="text-red-400 mt-0.5 flex-shrink-0">✕</span>
+                    <span>{t(`about.${key}`)}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ─── 6. TESTIMONIALS ─────────────────────────────────── */}
         <section data-section="testimonials" className="snap-start snap-always h-screen flex flex-col items-center justify-center px-4">
           <div className="w-full max-w-5xl">
             <div className="text-center mb-7">
               <span className="text-xs font-semibold tracking-widest text-green-400 uppercase">{t('testimonials.label')}</span>
               <h2 className="text-white text-3xl sm:text-4xl font-bold mt-2" style={{letterSpacing: '-0.02em'}}>{t('testimonials.title')}</h2>
               <p className="text-gray-500 mt-2 text-sm">
-                11 видео-отзывов от реальных людей — без монтажа и сценария
+                {t('testimonials.desc')}
               </p>
             </div>
             <VideoCarousel testimonials={testimonials} />
           </div>
         </section>
 
-        {/* ─── 6. FAQ ───────────────────────────────────────── */}
+        {/* ─── 7. FAQ ───────────────────────────────────────── */}
         <section data-section="faq" className="snap-start snap-always h-screen flex flex-col items-center justify-center px-4">
           <div className="w-full max-w-2xl">
             <div className="text-center mb-8">
@@ -356,7 +437,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ─── 7. FINAL CTA ─────────────────────────────────── */}
+        {/* ─── 8. FINAL CTA ─────────────────────────────────── */}
         <section data-section="cta" className="snap-start snap-always h-screen flex flex-col items-center justify-center px-4">
           <div className="w-full max-w-2xl text-center">
 
@@ -400,10 +481,77 @@ export default function Home() {
             <p className="mt-10 text-xs text-gray-700">
               {t('cta.copyright')}
             </p>
+
+            {/* Footer links */}
+            <div className="mt-8 pt-8 border-t border-white/5 w-full">
+              <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-xs text-gray-600 mb-5">
+                <a href="/uk/vidhuky"                className="hover:text-gray-400 transition-colors">Відгуки</a>
+                <a href="/uk/hipnoterapevt-onlayn"   className="hover:text-gray-400 transition-colors">Гіпнотерапевт онлайн</a>
+                <a href="/uk/hipnoz-protypokazannya" className="hover:text-gray-400 transition-colors">Протипоказання</a>
+                <a href="/uk/skilky-seansi-hipnozu"  className="hover:text-gray-400 transition-colors">Скільки сеансів</a>
+                <a href="/uk/rehresyvnyy-hipnoz"     className="hover:text-gray-400 transition-colors">Регресивний гіпноз</a>
+                <a href="/uk/hipnoz-dlya-schudnennya"className="hover:text-gray-400 transition-colors">Гіпноз для схуднення</a>
+                <a href="/uk/hipnoz-kynuty-palyty"              className="hover:text-gray-400 transition-colors">Гіпноз від куріння</a>
+                <a href="/uk/rozkryttya-tvorchoho-potentsialu" className="hover:text-gray-400 transition-colors">Творчий потенціал</a>
+              </div>
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-4 text-xs text-gray-600">
+                <span>Михайло Коломийцев · Гіпнотерапевт</span>
+                <span className="hidden sm:inline text-white/10">·</span>
+                <a
+                  href="https://t.me/mykhailo_elmejor"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-gray-400 transition-colors flex items-center gap-1"
+                >
+                  <Image src="/telegram-svgrepo-com.svg" alt="Telegram" width={12} height={12} />
+                  @mykhailo_elmejor
+                </a>
+                <span className="hidden sm:inline text-white/10">·</span>
+                <a
+                  href="https://wa.me/380671867857"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-gray-400 transition-colors"
+                >
+                  WhatsApp
+                </a>
+              </div>
+            </div>
           </div>
         </section>
 
       </div>
+
+      {/* Certificate lightbox */}
+      {certOpen && (
+        <div
+          className="fixed inset-0 z-[200] flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm"
+          onClick={() => setCertOpen(false)}
+        >
+          <div className="relative max-w-3xl w-full" onClick={(e) => e.stopPropagation()}>
+            <button
+              onClick={() => setCertOpen(false)}
+              className="absolute -top-10 right-0 text-gray-400 hover:text-white transition-colors flex items-center gap-1.5 text-sm"
+            >
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+              Закрити
+            </button>
+            <div className="relative w-full aspect-[3/2] rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
+              <Image
+                src="/certificate.jpg"
+                alt="Сертифікат Certified Master Hypnotherapist — International Academy of Hypnosis"
+                fill
+                className="object-contain bg-white"
+              />
+            </div>
+            <p className="text-center text-xs text-gray-600 mt-3">
+              International Academy of Hypnosis · London, UK · Certificate No. 000318
+            </p>
+          </div>
+        </div>
+      )}
 
       {/* Schema.org JSON-LD */}
       <script
@@ -413,10 +561,11 @@ export default function Home() {
             {
               "@context": "https://schema.org",
               "@type": "Person",
-              "name": "Михаил Коломойцев",
+              "name": "Михайло Коломийцев",
               "url": "https://kolomoitsev.com",
-              "jobTitle": "Гипнотерапевт",
-              "description": "Профессиональный гипнотерапевт с 5+ летним опытом. 200+ клиентов из 12 стран мира.",
+              "jobTitle": "Гіпнотерапевт",
+              "description": "Сертифікований майстер гіпнотерапії (International Academy of Hypnosis). 100+ клієнтів з 12 країн.",
+              "telephone": "+380671867857",
               "sameAs": ["https://t.me/mykhailo_elmejor"],
             },
             {

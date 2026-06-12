@@ -16,7 +16,8 @@
     "formNoSpam": "🔒 No spam. Just the guide.",
     "formSuccess": "Guide sent to your email! Check your inbox.",
     "formError": "Something went wrong. Please try again.",
-    "formNetworkError": "Connection error. Please try later."
+    "formNetworkError": "Connection error. Please try later.",
+    "certBadge": "Certified Master Hypnotherapist"
   },
   "problems": {
     "label": "Sound familiar?",
@@ -55,7 +56,8 @@
   "testimonials": {
     "label": "Real results",
     "title": "What clients say",
-    "cta": "I want results like this →"
+    "cta": "I want results like this →",
+    "desc": "11 video testimonials from real people — unscripted and unedited"
   },
   "faq": {
     "label": "Common questions",
@@ -70,6 +72,16 @@
     "a4": "Yes. Online sessions are just as effective. All you need is a quiet space and headphones. Thousands of clients worldwide get excellent results online.",
     "q5": "What if I don't get results?",
     "a5": "I offer a 100% results guarantee. If you don't feel a change after the session — I'll refund you in full, no questions asked."
+  },
+  "about": {
+    "label": "About the specialist",
+    "title": "Mykhailo Kolomoitsev",
+    "text": "Certified Master Hypnotherapist (International Academy of Hypnosis, London, UK). 70 academic hours of training, 3+ years of practice, 100+ clients from 12 countries. Specialisation: anxiety & fears, procrastination, addictions, psychosomatics, inner conflicts.",
+    "notForTitle": "Who I cannot help:",
+    "notFor1": "Acute psychotic states and schizophrenia",
+    "notFor2": "Severe depression with suicidal ideation",
+    "notFor3": "Severe epilepsy",
+    "notFor4": "Alcohol or drug intoxication"
   },
   "cta": {
     "badge": "100% Results Guarantee",
