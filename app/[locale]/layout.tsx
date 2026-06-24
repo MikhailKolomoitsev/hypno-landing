@@ -3,8 +3,11 @@ import { Inter } from "next/font/google";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import { notFound } from "next/navigation";
+import Script from "next/script";
 import { routing } from "../../i18n/routing";
 import "../globals.css";
+
+const GA_MEASUREMENT_ID = "G-3RK6QWTB50";
 
 const inter = Inter({
   subsets: ["latin", "cyrillic"],
@@ -90,6 +93,20 @@ export default async function LocaleLayout({
 
   return (
     <html lang={locale} className={inter.variable}>
+      <head>
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+          strategy="afterInteractive"
+        />
+        <Script id="ga4-init" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${GA_MEASUREMENT_ID}');
+          `}
+        </Script>
+      </head>
       <body className="antialiased">
         <NextIntlClientProvider messages={messages}>
           {children}
