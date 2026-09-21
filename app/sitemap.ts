@@ -30,6 +30,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority,
   }));
 
+  const articlePages = locales.map((locale) => ({
+    url: `${BASE}/${locale}/yak-pereproshyty-mozok-dlya-hroshey`,
+    lastModified: new Date(),
+    changeFrequency: "monthly" as const,
+    priority: 0.7,
+  }));
+
   return [
     {
       url: BASE,
@@ -39,5 +46,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     ...mainPages,
     ...seoPages,
+    ...articlePages,
   ];
 }

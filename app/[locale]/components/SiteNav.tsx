@@ -87,6 +87,7 @@ export default function SiteNav() {
                 { href: '/hipnoz-kynuty-palyty',             label: 'Гіпноз від куріння' },
                 { href: '/rehresyvnyy-hipnoz',               label: 'Регресивний гіпноз' },
                 { href: '/rozkryttya-tvorchoho-potentsialu', label: 'Творчий потенціал' },
+                { href: '/yak-pereproshyty-mozok-dlya-hroshey', label: 'Мозок і гроші' },
               ].map((link) => (
                 <Link
                   key={link.href}
