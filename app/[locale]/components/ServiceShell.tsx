@@ -3,6 +3,7 @@ import type { ReactNode } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import JsonLd from '../../components/JsonLd';
+import SiteFooter from './SiteFooter';
 import { BASE_URL, LOCALES, TELEGRAM_URL, type Locale } from '../../../lib/articles';
 
 export type Faq = { q: string; a: string };
@@ -162,6 +163,7 @@ export default function ServiceShell({
           <p className="mt-4 text-xs text-gray-600">{cta.note ?? `${ui.cert} · ${ui.author}`}</p>
         </div>
       </main>
+      <SiteFooter locale={locale} />
     </div>
   );
 }

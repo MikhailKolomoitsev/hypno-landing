@@ -2,7 +2,9 @@
 
 import Image from 'next/image';
 import { useState, useEffect, useRef } from 'react';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
+import { ARTICLES, type Locale } from '../../lib/articles';
+import { NAV_UI, SERVICE_PAGES } from '../../lib/pages';
 import VideoCarousel from './components/VideoCarousel';
 import LanguageSwitcher from './components/LanguageSwitcher';
 import SiteNav from './components/SiteNav';
@@ -25,6 +27,7 @@ const testimonials = [
 
 export default function Home() {
   const t = useTranslations();
+  const locale = useLocale() as Locale;
   // Lock body scroll for snap experience — restore on unmount
   useEffect(() => {
     document.body.classList.add('snap-page');
@@ -484,15 +487,16 @@ export default function Home() {
 
             {/* Footer links */}
             <div className="mt-8 pt-8 border-t border-white/5 w-full">
+              <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-xs text-gray-600 mb-3">
+                {SERVICE_PAGES.map((p) => (
+                  <a key={p.slug} href={`/${locale}/${p.slug}`} className="hover:text-gray-400 transition-colors">{p.title[locale]}</a>
+                ))}
+              </div>
               <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-xs text-gray-600 mb-5">
-                <a href="/uk/vidhuky"                className="hover:text-gray-400 transition-colors">Відгуки</a>
-                <a href="/uk/hipnoterapevt-onlayn"   className="hover:text-gray-400 transition-colors">Гіпнотерапевт онлайн</a>
-                <a href="/uk/hipnoz-protypokazannya" className="hover:text-gray-400 transition-colors">Протипоказання</a>
-                <a href="/uk/skilky-seansi-hipnozu"  className="hover:text-gray-400 transition-colors">Скільки сеансів</a>
-                <a href="/uk/rehresyvnyy-hipnoz"     className="hover:text-gray-400 transition-colors">Регресивний гіпноз</a>
-                <a href="/uk/hipnoz-dlya-schudnennya"className="hover:text-gray-400 transition-colors">Гіпноз для схуднення</a>
-                <a href="/uk/hipnoz-kynuty-palyty"              className="hover:text-gray-400 transition-colors">Гіпноз від куріння</a>
-                <a href="/uk/rozkryttya-tvorchoho-potentsialu" className="hover:text-gray-400 transition-colors">Творчий потенціал</a>
+                {ARTICLES.map((a) => (
+                  <a key={a.slug} href={`/${locale}/${a.slug}`} className="hover:text-gray-400 transition-colors">{a.title[locale]}</a>
+                ))}
+                <a href={`/${locale}/blog`} className="text-green-500/80 hover:text-green-400 transition-colors">{NAV_UI[locale].allArticles} →</a>
               </div>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4 text-xs text-gray-600">
                 <span>Михайло Коломийцев · Гіпнотерапевт</span>
@@ -561,12 +565,37 @@ export default function Home() {
             {
               "@context": "https://schema.org",
               "@type": "Person",
-              "name": "Михайло Коломийцев",
-              "url": "https://kolomoitsev.com",
-              "jobTitle": "Гіпнотерапевт",
-              "description": "Сертифікований майстер гіпнотерапії (International Academy of Hypnosis). 100+ клієнтів з 12 країн.",
+              "@id": "https://kolomoitsev.com/#person",
+              "name": locale === 'en' ? 'Mykhailo Kolomoitsev' : locale === 'ru' ? 'Михаил Коломойцев' : 'Михайло Коломийцев',
+              "url": `https://kolomoitsev.com/${locale}`,
+              "image": "https://kolomoitsev.com/hero-photo.jpg",
+              "jobTitle": locale === 'en' ? 'Hypnotherapist' : locale === 'ru' ? 'Гипнотерапевт' : 'Гіпнотерапевт',
+              "description": t('about.text'),
               "telephone": "+380671867857",
-              "sameAs": ["https://t.me/mykhailo_elmejor"],
+              "sameAs": ["https://t.me/mykhailo_elmejor", "https://wa.me/380671867857"],
+              "knowsLanguage": ["uk", "ru", "en"],
+              "knowsAbout": ["Hypnotherapy", "Hypnosis", "Anxiety", "Panic attacks", "Chronic pain", "Psychosomatic disorders", "Depression", "Insomnia", "Smoking cessation", "Weight loss", "Regression hypnosis"],
+              "hasCredential": {
+                "@type": "EducationalOccupationalCredential",
+                "name": "Certified Master Hypnotherapist",
+                "credentialCategory": "certificate",
+                "recognizedBy": { "@type": "Organization", "name": "International Academy of Hypnosis", "address": "London, UK" },
+              },
+            },
+            {
+              "@context": "https://schema.org",
+              "@type": "ProfessionalService",
+              "@id": "https://kolomoitsev.com/#service",
+              "name": "Hypnotherapy — Mykhailo Kolomoitsev",
+              "url": `https://kolomoitsev.com/${locale}`,
+              "image": "https://kolomoitsev.com/og-image.jpg",
+              "telephone": "+380671867857",
+              "founder": { "@id": "https://kolomoitsev.com/#person" },
+              "serviceType": "Hypnotherapy",
+              "areaServed": "Worldwide",
+              "availableLanguage": ["uk", "ru", "en"],
+              "availableChannel": { "@type": "ServiceChannel", "serviceUrl": "https://t.me/mykhailo_elmejor", "name": "Online (Zoom / Telegram)" },
+              "priceRange": "$$",
             },
             {
               "@context": "https://schema.org",

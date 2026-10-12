@@ -20,6 +20,66 @@ export type ArticleMeta = {
  */
 export const ARTICLES: ArticleMeta[] = [
   {
+    slug: 'shcho-take-hipnoterapiya',
+    published: '2026-10-12',
+    modified: '2026-10-12',
+    title: {
+      uk: 'Що таке гіпнотерапія і як працює гіпноз: повний гід',
+      ru: 'Что такое гипнотерапия и как работает гипноз: полный гид',
+      en: 'What Is Hypnotherapy and How Hypnosis Works: A Complete Guide',
+    },
+    short: {
+      uk: 'Що відбувається з мозком у трансі, з чим працює гіпнотерапія, чого від неї чекати і як вибрати спеціаліста.',
+      ru: 'Что происходит с мозгом в трансе, с чем работает гипнотерапия, чего от неё ждать и как выбрать специалиста.',
+      en: 'What happens in the brain in trance, what hypnotherapy treats, what to expect and how to choose a practitioner.',
+    },
+  },
+  {
+    slug: 'hipnoz-vid-tryvohy-panichni-ataky',
+    published: '2026-10-12',
+    modified: '2026-10-12',
+    title: {
+      uk: 'Гіпноз від тривоги та панічних атак: як це працює',
+      ru: 'Гипноз от тревоги и панических атак: как это работает',
+      en: 'Hypnosis for Anxiety and Panic Attacks: How It Works',
+    },
+    short: {
+      uk: 'Чому тривога не слухає логіку, що показують метааналізи і як гіпнотерапія зупиняє панічний цикл.',
+      ru: 'Почему тревога не слушает логику, что показывают метаанализы и как гипнотерапия останавливает панический цикл.',
+      en: 'Why anxiety ignores logic, what meta-analyses show and how hypnotherapy breaks the panic cycle.',
+    },
+  },
+  {
+    slug: 'hipnoz-vid-bezsonnya',
+    published: '2026-10-12',
+    modified: '2026-10-12',
+    title: {
+      uk: 'Гіпноз від безсоння: як повернути сон без снодійних',
+      ru: 'Гипноз от бессонницы: как вернуть сон без снотворных',
+      en: 'Hypnosis for Insomnia: Restoring Sleep Without Pills',
+    },
+    short: {
+      uk: 'Чому мозок «не вимикається», що каже наука про гіпноз і сон, і як проходить робота з безсонням.',
+      ru: 'Почему мозг «не выключается», что говорит наука о гипнозе и сне, и как проходит работа с бессонницей.',
+      en: 'Why the brain "won\'t switch off", what science says about hypnosis and sleep, and how insomnia work goes.',
+    },
+  },
+  {
+    slug: 'hipnoz-psykhosomatyka',
+    published: '2026-10-12',
+    modified: '2026-10-12',
+    title: {
+      uk: 'Гіпноз і психосоматика: коли тіло говорить замість вас',
+      ru: 'Гипноз и психосоматика: когда тело говорит вместо вас',
+      en: 'Hypnosis and Psychosomatic Symptoms: When the Body Speaks for You',
+    },
+    short: {
+      uk: 'Як емоції стають симптомами, які стани вважаються психосоматичними і чому гіпнотерапія тут особливо доречна.',
+      ru: 'Как эмоции становятся симптомами, какие состояния считаются психосоматическими и почему гипнотерапия здесь особенно уместна.',
+      en: 'How emotions become symptoms, which conditions count as psychosomatic and why hypnotherapy fits so well here.',
+    },
+  },
+  {
     slug: 'hipnoz-vid-boliu',
     published: '2026-10-12',
     modified: '2026-10-12',

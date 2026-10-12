@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { ARTICLES, BASE_URL, LOCALES, TELEGRAM_URL, isLocale, type Locale } from '../../../lib/articles';
+import SiteFooter from '../components/SiteFooter';
 
 const T: Record<Locale, { title: string; description: string; h1a: string; h1b: string; lead: string; home: string; book: string; crumb: string }> = {
   uk: {
@@ -96,6 +97,7 @@ export default async function BlogIndex({ params }: { params: Promise<{ locale: 
           ))}
         </div>
       </main>
+      <SiteFooter locale={locale} />
     </div>
   );
 }

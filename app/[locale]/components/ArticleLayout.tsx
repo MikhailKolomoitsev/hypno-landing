@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import JsonLd from '../../components/JsonLd';
+import SiteFooter from './SiteFooter';
 import {
   ARTICLES,
   BASE_URL,
@@ -24,6 +25,8 @@ export type Section = {
   steps?: Step[];
   /** Highlighted box, e.g. a key takeaway or a warning */
   callout?: string;
+  /** Internal links (slug relative to locale) rendered as a card grid */
+  links?: { slug: string; label: string; text?: string }[];
 };
 
 export type Reference = { label: string; url: string };
@@ -230,6 +233,16 @@ export default function ArticleLayout({ locale, meta, t }: { locale: Locale; met
                   ))}
                 </div>
               )}
+              {s.links && (
+                <div className="grid sm:grid-cols-2 gap-3">
+                  {s.links.map((l) => (
+                    <Link key={l.slug} href={`/${locale}/${l.slug}`} className="p-4 rounded-xl border border-white/8 bg-white/3 hover:border-green-500/30 hover:bg-white/5 transition-colors block">
+                      <div className="text-white text-sm font-medium">{l.label} →</div>
+                      {l.text && <div className="text-gray-500 text-xs mt-1">{l.text}</div>}
+                    </Link>
+                  ))}
+                </div>
+              )}
               {s.callout && (
                 <div className="mt-4 p-5 rounded-2xl border border-green-500/20 bg-green-500/5 text-gray-300">
                   {s.callout}
@@ -320,6 +333,7 @@ export default function ArticleLayout({ locale, meta, t }: { locale: Locale; met
           </section>
         )}
       </main>
+      <SiteFooter locale={locale} />
     </div>
   );
 }
