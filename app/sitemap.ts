@@ -12,7 +12,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 1,
   }));
 
-  // Service pages are currently Ukrainian-only; list the canonical /uk version.
   const seoPages = [
     { slug: "hipnoterapevt-onlayn",   priority: 0.9 },
     { slug: "vidhuky",                priority: 0.9 },
@@ -22,12 +21,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { slug: "hipnoz-kynuty-palyty",   priority: 0.8 },
     { slug: "rehresyvnyy-hipnoz",              priority: 0.75 },
     { slug: "rozkryttya-tvorchoho-potentsialu", priority: 0.8 },
-  ].map(({ slug, priority }) => ({
-    url: `${BASE_URL}/uk/${slug}`,
-    lastModified: SITE_UPDATED,
-    changeFrequency: "monthly" as const,
-    priority,
-  }));
+  ].flatMap(({ slug, priority }) =>
+    LOCALES.map((locale) => ({
+      url: `${BASE_URL}/${locale}/${slug}`,
+      lastModified: SITE_UPDATED,
+      changeFrequency: "monthly" as const,
+      priority,
+    })),
+  );
 
   const blogIndex = LOCALES.map((locale) => ({
     url: `${BASE_URL}/${locale}/blog`,

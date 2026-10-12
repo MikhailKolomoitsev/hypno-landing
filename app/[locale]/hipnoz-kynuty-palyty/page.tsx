@@ -1,146 +1,167 @@
 import type { Metadata } from 'next';
-import Image from 'next/image';
-import Link from 'next/link';
+import { notFound } from 'next/navigation';
+import ServiceShell, { CODE_WORD, CtaText, serviceMetadata } from '../components/ServiceShell';
+import { LOCALES, isLocale, type Locale } from '../../../lib/articles';
 
-export const metadata: Metadata = {
-  title: 'Гіпноз від куріння: кинути палити за 1–3 сесії | kolomoitsev.com',
-  description: 'Гіпноз допомагає кинути палити назавжди — без ломки і замінників. Як це працює, скільки сеансів потрібно, і чому це ефективніше від пластирів.',
-  alternates: {
-    canonical: 'https://kolomoitsev.com/uk/hipnoz-kynuty-palyty',
+const SLUG = 'hipnoz-kynuty-palyty';
+
+const content = {
+  uk: {
+    metaTitle: 'Гіпноз від куріння: кинути палити за 1–3 сесії | kolomoitsev.com',
+    metaDescription: 'Гіпноз допомагає кинути палити назавжди — без ломки і замінників. Як це працює, скільки сеансів потрібно, і чому це ефективніше від пластирів.',
+    breadcrumb: 'Гіпноз — кинути палити',
+    title1: 'Гіпноз від куріння:', title2: 'кинути палити за 1–3 сесії',
+    lead: 'Куріння тримається не лише на фізичній залежності від нікотину — це ще й звичка, ритуал, частина дня. Гіпноз працює саме з цією психологічною частиною, тому й дає те, чого пластирі та жуйки дати не можуть.',
+    statValue: '77%', statLabel: 'ефективність гіпнозу при лікуванні нікотинової залежності', statSource: '(за даними дослідження American Health Magazine)',
+    whyTitle: 'Чому пластирі і жуйки не допомагають?',
+    whyIntro: 'Нікотинозамінна терапія справляється з фізичним потягом. Але куріння — це ще й:',
+    whyList: ['Ритуал: кава + сигарета, перерва + сигарета', 'Спосіб справлятися зі стресом', 'Соціальна звичка (всі палять — і я)', 'Підсвідоме переконання: «сигарета мене заспокоює»'],
+    whyOutro: 'Гіпноз розриває саме ці зв\'язки — на рівні підсвідомості, де вони і живуть.',
+    sessionTitle: 'Як відбувається сесія від куріння?',
+    steps: [
+      { title: 'Вхідна розмова', text: 'З\'ясовуємо ваші тригери, скільки палите, що пробували раніше. 20 хвилин.' },
+      { title: 'Введення у транс', text: 'Глибоке розслаблення з фокусом. Ви у свідомості та контролі.' },
+      { title: 'Розрив зв\'язків', text: 'Прибираємо асоціації: стрес → сигарета, ранок → сигарета. Замінюємо реакції.' },
+      { title: 'Нова ідентичність', text: 'Закріплюємо образ себе як людини, яка не палить — легко і природно.' },
+      { title: 'Вихід і закріплення', text: 'Даємо рекомендації на перший тиждень.' },
+    ],
+    countTitle: 'Скільки сеансів потрібно?',
+    count1a: 'Більшість клієнтів кидають палити після ', count1strong: '1–2 сесій', count1b: '. Для тих, хто курить 20+ років або має сильний стресовий тригер — може знадобитися третя.',
+    count2: 'Після першої сесії тяга до сигарет значно знижується або зникає. Зазвичай клієнти описують це як: «просто не хочу більше».',
+    withdrawalTitle: 'Чи є «ломка»?',
+    withdrawal: 'Фізична залежність від нікотину проходить за 3–5 днів — і вона набагато слабша, ніж здається. Більшість «ломки» — це психологічний компонент. Саме з ним і працює гіпноз.',
+    condTitle: 'Важлива умова',
+    cond1: 'Гіпноз не діє проти волі людини. Ви маєте ', condStrong: 'дійсно хотіти кинути палити', cond2: ' — не «спробувати», не «подивитись що буде». Якщо є реальне бажання — результат майже гарантований.',
+    ctaTitle: 'Готові кинути палити?', ctaBefore: 'Напишіть кодове слово', ctaAfter: '— і я безкоштовно проконсультую',
   },
-};
+  ru: {
+    metaTitle: 'Гипноз от курения: бросить курить за 1–3 сессии | kolomoitsev.com',
+    metaDescription: 'Гипноз помогает бросить курить навсегда — без ломки и заменителей. Как это работает, сколько сеансов нужно, и почему это эффективнее пластырей.',
+    breadcrumb: 'Гипноз — бросить курить',
+    title1: 'Гипноз от курения:', title2: 'бросить курить за 1–3 сессии',
+    lead: 'Курение держится не только на физической зависимости от никотина — это ещё и привычка, ритуал, часть дня. Гипноз работает именно с этой психологической частью, поэтому и даёт то, чего пластыри и жвачки дать не могут.',
+    statValue: '77%', statLabel: 'эффективность гипноза при лечении никотиновой зависимости', statSource: '(по данным исследования American Health Magazine)',
+    whyTitle: 'Почему пластыри и жвачки не помогают?',
+    whyIntro: 'Никотинозаместительная терапия справляется с физической тягой. Но курение — это ещё и:',
+    whyList: ['Ритуал: кофе + сигарета, перерыв + сигарета', 'Способ справляться со стрессом', 'Социальная привычка (все курят — и я)', 'Подсознательное убеждение: «сигарета меня успокаивает»'],
+    whyOutro: 'Гипноз разрывает именно эти связи — на уровне подсознания, где они и живут.',
+    sessionTitle: 'Как проходит сессия от курения?',
+    steps: [
+      { title: 'Вводная беседа', text: 'Выясняем ваши триггеры, сколько курите, что пробовали раньше. 20 минут.' },
+      { title: 'Введение в транс', text: 'Глубокое расслабление с фокусом. Вы в сознании и контроле.' },
+      { title: 'Разрыв связей', text: 'Убираем ассоциации: стресс → сигарета, утро → сигарета. Заменяем реакции.' },
+      { title: 'Новая идентичность', text: 'Закрепляем образ себя как человека, который не курит — легко и естественно.' },
+      { title: 'Выход и закрепление', text: 'Даём рекомендации на первую неделю.' },
+    ],
+    countTitle: 'Сколько сеансов нужно?',
+    count1a: 'Большинство клиентов бросают курить после ', count1strong: '1–2 сессий', count1b: '. Тем, кто курит 20+ лет или имеет сильный стрессовый триггер, может понадобиться третья.',
+    count2: 'После первой сессии тяга к сигаретам значительно снижается или исчезает. Обычно клиенты описывают это так: «просто не хочу больше».',
+    withdrawalTitle: 'Есть ли «ломка»?',
+    withdrawal: 'Физическая зависимость от никотина проходит за 3–5 дней — и она намного слабее, чем кажется. Большая часть «ломки» — психологический компонент. Именно с ним и работает гипноз.',
+    condTitle: 'Важное условие',
+    cond1: 'Гипноз не действует против воли человека. Вы должны ', condStrong: 'действительно хотеть бросить курить', cond2: ' — не «попробовать», не «посмотреть, что будет». Если есть реальное желание — результат почти гарантирован.',
+    ctaTitle: 'Готовы бросить курить?', ctaBefore: 'Напишите кодовое слово', ctaAfter: '— и я бесплатно проконсультирую',
+  },
+  en: {
+    metaTitle: 'Hypnosis to Quit Smoking: Stop in 1–3 Sessions | kolomoitsev.com',
+    metaDescription: 'Hypnosis helps you quit smoking for good, without withdrawal or substitutes. How it works, how many sessions you need, and why it beats patches.',
+    breadcrumb: 'Hypnosis to quit smoking',
+    title1: 'Hypnosis to Quit Smoking:', title2: 'stop in 1–3 sessions',
+    lead: 'Smoking is held in place not only by physical nicotine dependence but also by habit, ritual, a part of your day. Hypnosis works with exactly this psychological part, which is why it delivers what patches and gum cannot.',
+    statValue: '77%', statLabel: 'effectiveness of hypnosis in treating nicotine dependence', statSource: '(according to a study cited by American Health Magazine)',
+    whyTitle: 'Why patches and gum do not help',
+    whyIntro: 'Nicotine replacement handles the physical craving. But smoking is also:',
+    whyList: ['A ritual: coffee + cigarette, break + cigarette', 'A way of coping with stress', 'A social habit (everyone smokes, so do I)', 'A subconscious belief: "a cigarette calms me down"'],
+    whyOutro: 'Hypnosis breaks exactly these links, at the subconscious level where they live.',
+    sessionTitle: 'How a stop-smoking session goes',
+    steps: [
+      { title: 'Intake conversation', text: 'We identify your triggers, how much you smoke, what you have tried before. 20 minutes.' },
+      { title: 'Induction', text: 'Deep, focused relaxation. You remain aware and in control.' },
+      { title: 'Breaking the links', text: 'We remove the associations: stress → cigarette, morning → cigarette. We replace the responses.' },
+      { title: 'New identity', text: 'We anchor your self-image as a person who does not smoke, easily and naturally.' },
+      { title: 'Emergence and reinforcement', text: 'You get recommendations for the first week.' },
+    ],
+    countTitle: 'How many sessions are needed',
+    count1a: 'Most clients quit after ', count1strong: '1–2 sessions', count1b: '. For those who have smoked 20+ years or have a strong stress trigger, a third may be needed.',
+    count2: 'After the first session the craving drops sharply or disappears. Clients usually describe it as "I just don\'t want to anymore".',
+    withdrawalTitle: 'Is there withdrawal?',
+    withdrawal: 'Physical nicotine dependence passes in 3–5 days, and it is much weaker than it seems. Most of the "withdrawal" is the psychological component. That is exactly what hypnosis works with.',
+    condTitle: 'One important condition',
+    cond1: 'Hypnosis does not work against a person\'s will. You must ', condStrong: 'genuinely want to quit', cond2: ', not "try" or "see what happens". If the desire is real, the result is almost guaranteed.',
+    ctaTitle: 'Ready to quit smoking?', ctaBefore: 'Message me the code word', ctaAfter: 'and I will give you a free consultation',
+  },
+} satisfies Record<Locale, unknown>;
 
-export default function HipnozKynutyPalyty() {
+export function generateStaticParams() { return LOCALES.map((locale) => ({ locale })); }
+
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params;
+  if (!isLocale(locale)) return {};
+  return serviceMetadata(locale, SLUG, content[locale].metaTitle, content[locale].metaDescription);
+}
+
+export default async function Page({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  if (!isLocale(locale)) notFound();
+  const t = content[locale];
+
   return (
-    <div className="min-h-screen bg-[#080810] text-white">
-      <div className="site-bg" />
+    <ServiceShell
+      locale={locale} slug={SLUG} breadcrumb={t.breadcrumb} serviceDescription={t.metaDescription}
+      titleLine1={t.title1} titleLine2={t.title2} lead={t.lead}
+      faq={[{ q: t.countTitle, a: `${t.count1a}${t.count1strong}${t.count1b} ${t.count2}` }, { q: t.withdrawalTitle, a: t.withdrawal }]}
+      cta={{ title: t.ctaTitle, text: <CtaText before={t.ctaBefore} locale={locale} after={t.ctaAfter} />, button: CODE_WORD[locale].button }}
+    >
+      <div className="p-6 rounded-2xl border border-green-500/20 bg-green-500/5 mb-10 text-center">
+        <div className="text-4xl font-bold text-green-400 mb-1">{t.statValue}</div>
+        <div className="text-gray-400 text-sm">{t.statLabel}<br /><span className="text-gray-600 text-xs">{t.statSource}</span></div>
+      </div>
 
-      <header className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-4 border-b border-white/5 bg-black/30 backdrop-blur-md">
-        <Link href="/uk" className="text-sm text-gray-400 hover:text-white transition-colors flex items-center gap-2">
-          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 19l-7-7 7-7" />
-          </svg>
-          На головну
-        </Link>
-        <a
-          href="https://t.me/mykhailo_elmejor"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center gap-2 px-4 py-2 rounded-full bg-green-500 hover:bg-green-400 text-black text-sm font-semibold transition-all"
-        >
-          <Image src="/telegram-svgrepo-com.svg" alt="Telegram" width={14} height={14} />
-          Записатися
-        </a>
-      </header>
-
-      <main className="relative z-10 max-w-3xl mx-auto px-6 pt-28 pb-20">
-
-        <nav className="text-xs text-gray-600 mb-8">
-          <Link href="/uk" className="hover:text-gray-400">Головна</Link>
-          <span className="mx-2">/</span>
-          <span className="text-gray-400">Гіпноз — кинути палити</span>
-        </nav>
-
-        <h1 className="text-4xl sm:text-5xl font-bold leading-tight mb-6" style={{ letterSpacing: '-0.03em' }}>
-          Гіпноз від куріння:<br />
-          <span className="bg-gradient-to-r from-green-400 to-emerald-300 bg-clip-text text-transparent">
-            кинути палити за 1–3 сесії
-          </span>
-        </h1>
-
-        <p className="text-gray-400 text-lg leading-relaxed mb-10">
-          Куріння тримається не лише на фізичній залежності від нікотину — це ще й звичка, ритуал, частина дня. Гіпноз працює саме з цією психологічною частиною, тому й дає те, чого пластирі та жуйки дати не можуть.
-        </p>
-
-        {/* Key stat */}
-        <div className="p-6 rounded-2xl border border-green-500/20 bg-green-500/5 mb-10 text-center">
-          <div className="text-4xl font-bold text-green-400 mb-1">77%</div>
-          <div className="text-gray-400 text-sm">ефективність гіпнозу при лікуванні нікотинової залежності<br /><span className="text-gray-600 text-xs">(за даними дослідження American Health Magazine)</span></div>
+      <section className="space-y-10 text-gray-300 leading-relaxed">
+        <div>
+          <h2 className="text-white text-2xl font-bold mb-4">{t.whyTitle}</h2>
+          <p>{t.whyIntro}</p>
+          <ul className="mt-3 space-y-2 text-gray-400 text-sm">
+            {t.whyList.map((li) => (
+              <li key={li} className="flex items-start gap-2"><span className="text-gray-600 mt-0.5">→</span> {li}</li>
+            ))}
+          </ul>
+          <p className="mt-4">{t.whyOutro}</p>
         </div>
 
-        <section className="space-y-10 text-gray-300 leading-relaxed">
-
-          <div>
-            <h2 className="text-white text-2xl font-bold mb-4">Чому пластирі і жуйки не допомагають?</h2>
-            <p>
-              Нікотинозамінна терапія справляється з фізичним потягом. Але куріння — це ще й:
-            </p>
-            <ul className="mt-3 space-y-2 text-gray-400 text-sm">
-              <li className="flex items-start gap-2"><span className="text-gray-600 mt-0.5">→</span> Ритуал: кава + сигарета, перерва + сигарета</li>
-              <li className="flex items-start gap-2"><span className="text-gray-600 mt-0.5">→</span> Спосіб справлятися зі стресом</li>
-              <li className="flex items-start gap-2"><span className="text-gray-600 mt-0.5">→</span> Соціальна звичка (всі палять — і я)</li>
-              <li className="flex items-start gap-2"><span className="text-gray-600 mt-0.5">→</span> Підсвідоме переконання: «сигарета мене заспокоює»</li>
-            </ul>
-            <p className="mt-4">
-              Гіпноз розриває саме ці зв'язки — на рівні підсвідомості, де вони і живуть.
-            </p>
-          </div>
-
-          <div>
-            <h2 className="text-white text-2xl font-bold mb-4">Як відбувається сесія від куріння?</h2>
-            <div className="space-y-3">
-              {[
-                { title: 'Вхідна розмова', text: 'З\'ясовуємо ваші тригери, скільки палите, що пробували раніше. 20 хвилин.' },
-                { title: 'Введення у транс', text: 'Глибоке розслаблення з фокусом. Ви у свідомості та контролі.' },
-                { title: 'Розрив зв\'язків', text: 'Прибираємо асоціації: стрес → сигарета, ранок → сигарета. Замінюємо реакції.' },
-                { title: 'Нова ідентичність', text: 'Закріплюємо образ себе як людини, яка не палить — легко і природно.' },
-                { title: 'Вихід і закріплення', text: 'Даємо рекомендації на перший тиждень.' },
-              ].map((item) => (
-                <div key={item.title} className="flex gap-4 p-4 rounded-xl border border-white/8 bg-white/3">
-                  <span className="text-green-400 font-bold text-sm flex-shrink-0 mt-0.5">→</span>
-                  <div>
-                    <div className="text-white font-medium text-sm mb-1">{item.title}</div>
-                    <div className="text-gray-500 text-sm">{item.text}</div>
-                  </div>
+        <div>
+          <h2 className="text-white text-2xl font-bold mb-4">{t.sessionTitle}</h2>
+          <div className="space-y-3">
+            {t.steps.map((item) => (
+              <div key={item.title} className="flex gap-4 p-4 rounded-xl border border-white/8 bg-white/3">
+                <span className="text-green-400 font-bold text-sm flex-shrink-0 mt-0.5">→</span>
+                <div>
+                  <div className="text-white font-medium text-sm mb-1">{item.title}</div>
+                  <div className="text-gray-500 text-sm">{item.text}</div>
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
-
-          <div>
-            <h2 className="text-white text-2xl font-bold mb-4">Скільки сеансів потрібно?</h2>
-            <p>
-              Більшість клієнтів кидають палити після <strong className="text-white">1–2 сесій</strong>. Для тих, хто курить 20+ років або має сильний стресовий тригер — може знадобитися третя.
-            </p>
-            <p className="mt-4">
-              Після першої сесії тяга до сигарет значно знижується або зникає. Зазвичай клієнти описують це як: «просто не хочу більше».
-            </p>
-          </div>
-
-          <div>
-            <h2 className="text-white text-2xl font-bold mb-4">Чи є «ломка»?</h2>
-            <p>
-              Фізична залежність від нікотину проходить за 3–5 днів — і вона набагато слабша, ніж здається. Більшість «ломки» — це психологічний компонент. Саме з ним і працює гіпноз.
-            </p>
-          </div>
-
-          <div>
-            <h2 className="text-white text-2xl font-bold mb-4">Важлива умова</h2>
-            <div className="p-5 rounded-2xl border border-yellow-500/15 bg-yellow-500/5">
-              <p className="text-gray-300 text-sm">
-                Гіпноз не діє проти волі людини. Ви маєте <strong className="text-white">дійсно хотіти кинути палити</strong> — не «спробувати», не «подивитись що буде». Якщо є реальне бажання — результат майже гарантований.
-              </p>
-            </div>
-          </div>
-
-        </section>
-
-        <div className="mt-14 p-8 rounded-3xl border border-white/10 bg-gradient-to-br from-purple-900/30 to-black/30 text-center">
-          <h2 className="text-white text-2xl font-bold mb-3">Готові кинути палити?</h2>
-          <p className="text-gray-400 text-sm mb-6">Напишіть кодове слово <span className="text-white font-semibold">«Перезапуск»</span> — і я безкоштовно проконсультую</p>
-          <a
-            href="https://t.me/mykhailo_elmejor"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2.5 px-8 py-4 rounded-xl bg-green-500 hover:bg-green-400 text-black font-bold transition-all hover:scale-105 text-sm shadow-lg shadow-green-600/30"
-          >
-            <Image src="/telegram-svgrepo-com.svg" alt="Telegram" width={18} height={18} />
-            Написати «Перезапуск»
-          </a>
-          <p className="mt-4 text-xs text-gray-600">Certified Master Hypnotherapist · Михайло Коломийцев</p>
         </div>
 
-      </main>
-    </div>
+        <div>
+          <h2 className="text-white text-2xl font-bold mb-4">{t.countTitle}</h2>
+          <p>{t.count1a}<strong className="text-white">{t.count1strong}</strong>{t.count1b}</p>
+          <p className="mt-4">{t.count2}</p>
+        </div>
+
+        <div>
+          <h2 className="text-white text-2xl font-bold mb-4">{t.withdrawalTitle}</h2>
+          <p>{t.withdrawal}</p>
+        </div>
+
+        <div>
+          <h2 className="text-white text-2xl font-bold mb-4">{t.condTitle}</h2>
+          <div className="p-5 rounded-2xl border border-yellow-500/15 bg-yellow-500/5">
+            <p className="text-gray-300 text-sm">{t.cond1}<strong className="text-white">{t.condStrong}</strong>{t.cond2}</p>
+          </div>
+        </div>
+      </section>
+    </ServiceShell>
   );
 }
