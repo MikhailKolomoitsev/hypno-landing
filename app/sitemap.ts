@@ -1,19 +1,18 @@
 import type { MetadataRoute } from "next";
+import { ARTICLES, BASE_URL, LOCALES } from "../lib/articles";
 
-const BASE = "https://kolomoitsev.com";
+/** Bump when static pages change materially — a constantly moving date gets ignored by crawlers. */
+const SITE_UPDATED = new Date("2026-10-12");
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const locales = ["uk", "ru", "en"];
+  const mainPages = LOCALES.map((locale) => ({
+    url: `${BASE_URL}/${locale}`,
+    lastModified: SITE_UPDATED,
+    changeFrequency: "monthly" as const,
+    priority: 1,
+  }));
 
-  const mainPages = locales.flatMap((locale) => [
-    {
-      url: `${BASE}/${locale}`,
-      lastModified: new Date(),
-      changeFrequency: "monthly" as const,
-      priority: 1,
-    },
-  ]);
-
+  // Service pages are currently Ukrainian-only; list the canonical /uk version.
   const seoPages = [
     { slug: "hipnoterapevt-onlayn",   priority: 0.9 },
     { slug: "vidhuky",                priority: 0.9 },
@@ -24,28 +23,33 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { slug: "rehresyvnyy-hipnoz",              priority: 0.75 },
     { slug: "rozkryttya-tvorchoho-potentsialu", priority: 0.8 },
   ].map(({ slug, priority }) => ({
-    url: `${BASE}/uk/${slug}`,
-    lastModified: new Date(),
+    url: `${BASE_URL}/uk/${slug}`,
+    lastModified: SITE_UPDATED,
     changeFrequency: "monthly" as const,
     priority,
   }));
 
-  const articlePages = locales.map((locale) => ({
-    url: `${BASE}/${locale}/yak-pereproshyty-mozok-dlya-hroshey`,
-    lastModified: new Date(),
-    changeFrequency: "monthly" as const,
-    priority: 0.7,
+  const blogIndex = LOCALES.map((locale) => ({
+    url: `${BASE_URL}/${locale}/blog`,
+    lastModified: new Date(ARTICLES.map((a) => a.modified).sort().at(-1)!),
+    changeFrequency: "weekly" as const,
+    priority: 0.8,
   }));
 
-  return [
-    {
-      url: BASE,
-      lastModified: new Date(),
+  const articlePages = ARTICLES.flatMap((a) =>
+    LOCALES.map((locale) => ({
+      url: `${BASE_URL}/${locale}/${a.slug}`,
+      lastModified: new Date(a.modified),
       changeFrequency: "monthly" as const,
-      priority: 1,
-    },
+      priority: 0.75,
+    })),
+  );
+
+  return [
+    { url: BASE_URL, lastModified: SITE_UPDATED, changeFrequency: "monthly" as const, priority: 1 },
     ...mainPages,
     ...seoPages,
+    ...blogIndex,
     ...articlePages,
   ];
 }

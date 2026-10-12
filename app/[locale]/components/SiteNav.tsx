@@ -87,7 +87,28 @@ export default function SiteNav() {
                 { href: '/hipnoz-kynuty-palyty',             label: 'Гіпноз від куріння' },
                 { href: '/rehresyvnyy-hipnoz',               label: 'Регресивний гіпноз' },
                 { href: '/rozkryttya-tvorchoho-potentsialu', label: 'Творчий потенціал' },
+              ].map((link) => (
+                <Link
+                  key={link.href}
+                  href={localizedHref(link.href)}
+                  onClick={() => setOpen(false)}
+                  className="flex items-center gap-2 px-3 py-2.5 rounded-xl text-gray-500 hover:text-white hover:bg-white/5 transition-colors text-sm"
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </div>
+
+            {/* Articles */}
+            <div className="my-6 border-t border-white/5" />
+            <div className="space-y-1">
+              <p className="text-xs text-gray-600 px-3 mb-2 uppercase tracking-wider">Статті</p>
+              {[
+                { href: '/hipnoz-vid-boliu',                  label: 'Гіпноз від болю' },
+                { href: '/hipnoz-pry-depresiyi',              label: 'Гіпноз при депресії' },
+                { href: '/yak-zlizty-z-antydepresantiv',      label: 'Відмова від антидепресантів' },
                 { href: '/yak-pereproshyty-mozok-dlya-hroshey', label: 'Мозок і гроші' },
+                { href: '/blog',                              label: 'Усі статті →' },
               ].map((link) => (
                 <Link
                   key={link.href}
