@@ -7,9 +7,9 @@ const SLUG = 'hipnoz-vid-bezsonnya';
 const meta = ARTICLES.find((a) => a.slug === SLUG)!;
 
 const references: Reference[] = [
-  { label: 'Chamine I., Atchley R., Oken B.S. (2018). Hypnosis intervention effects on sleep outcomes: a systematic review. Journal of Clinical Sleep Medicine.', url: 'https://pubmed.ncbi.nlm.nih.gov/?term=Chamine+Atchley+Oken+2018+hypnosis+intervention+sleep+outcomes+systematic+review' },
-  { label: 'Cordi M.J., Schlarb A.A., Rasch B. (2014). Deepening sleep by hypnotic suggestion. Sleep.', url: 'https://pubmed.ncbi.nlm.nih.gov/?term=Cordi+Schlarb+Rasch+2014+deepening+sleep+hypnotic+suggestion' },
-  { label: 'Riemann D. et al. (2017). European guideline for the diagnosis and treatment of insomnia. Journal of Sleep Research.', url: 'https://pubmed.ncbi.nlm.nih.gov/?term=Riemann+2017+European+guideline+diagnosis+treatment+insomnia' },
+  { label: 'Chamine I., Atchley R., Oken B.S. (2018). Hypnosis intervention effects on sleep outcomes: a systematic review. Journal of Clinical Sleep Medicine.', url: 'https://pubmed.ncbi.nlm.nih.gov/29198290/' },
+  { label: 'Cordi M.J., Schlarb A.A., Rasch B. (2014). Deepening sleep by hypnotic suggestion. Sleep.', url: 'https://pubmed.ncbi.nlm.nih.gov/24882909/' },
+  { label: 'Riemann D. et al. (2017). European guideline for the diagnosis and treatment of insomnia. Journal of Sleep Research.', url: 'https://pubmed.ncbi.nlm.nih.gov/28875581/' },
 ];
 
 const content: Record<Locale, ArticleContent> = {

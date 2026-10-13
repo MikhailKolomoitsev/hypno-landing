@@ -7,9 +7,9 @@ const SLUG = 'hipnoz-pry-depresiyi';
 const meta = ARTICLES.find((a) => a.slug === SLUG)!;
 
 const references: Reference[] = [
-  { label: 'Milling L.S. et al. (2019). The effectiveness of hypnosis as an intervention for depression: a meta-analytic review. International Journal of Clinical and Experimental Hypnosis.', url: 'https://pubmed.ncbi.nlm.nih.gov/?term=Milling+2019+effectiveness+of+hypnosis+intervention+depression+meta-analytic' },
-  { label: 'Shih M., Yang Y.H., Koo M. (2009). A meta-analysis of hypnosis in the treatment of depressive symptoms: a brief communication. International Journal of Clinical and Experimental Hypnosis.', url: 'https://pubmed.ncbi.nlm.nih.gov/?term=Shih+Yang+Koo+2009+meta-analysis+hypnosis+depressive+symptoms' },
-  { label: 'Alladin A., Alibhai A. (2007). Cognitive hypnotherapy for depression: an empirical investigation. International Journal of Clinical and Experimental Hypnosis.', url: 'https://pubmed.ncbi.nlm.nih.gov/?term=Alladin+Alibhai+2007+cognitive+hypnotherapy+depression' },
+  { label: 'Milling L.S., Valentine K.E., McCarley H.S., LoStimolo L.M. (2019). A meta-analysis of hypnotic interventions for depression symptoms: high hopes for hypnosis? American Journal of Clinical Hypnosis.', url: 'https://pubmed.ncbi.nlm.nih.gov/34874235/' },
+  { label: 'Shih M., Yang Y.H., Koo M. (2009). A meta-analysis of hypnosis in the treatment of depressive symptoms: a brief communication. International Journal of Clinical and Experimental Hypnosis.', url: 'https://pubmed.ncbi.nlm.nih.gov/20183000/' },
+  { label: 'Alladin A., Alibhai A. (2007). Cognitive hypnotherapy for depression: an empirical investigation. International Journal of Clinical and Experimental Hypnosis.', url: 'https://pubmed.ncbi.nlm.nih.gov/17365072/' },
   { label: 'WHO. Depressive disorder (depression) — fact sheet.', url: 'https://www.who.int/news-room/fact-sheets/detail/depression' },
 ];
 

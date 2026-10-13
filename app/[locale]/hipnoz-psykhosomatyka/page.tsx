@@ -7,10 +7,10 @@ const SLUG = 'hipnoz-psykhosomatyka';
 const meta = ARTICLES.find((a) => a.slug === SLUG)!;
 
 const references: Reference[] = [
-  { label: 'Flammer E., Alladin A. (2007). The efficacy of hypnotherapy in the treatment of psychosomatic disorders: meta-analytical evidence. International Journal of Clinical and Experimental Hypnosis.', url: 'https://pubmed.ncbi.nlm.nih.gov/?term=Flammer+Alladin+2007+efficacy+hypnotherapy+psychosomatic+disorders+meta-analytical' },
-  { label: 'Flik C.E. et al. (2019). Efficacy of individual and group hypnotherapy in irritable bowel syndrome (IMAGINE): a multicentre randomised controlled trial. The Lancet Gastroenterology & Hepatology.', url: 'https://pubmed.ncbi.nlm.nih.gov/?term=Flik+2019+hypnotherapy+irritable+bowel+syndrome+IMAGINE+Lancet' },
-  { label: 'Shenefelt P.D. (2000). Hypnosis in dermatology. Archives of Dermatology.', url: 'https://pubmed.ncbi.nlm.nih.gov/?term=Shenefelt+2000+hypnosis+in+dermatology' },
-  { label: 'Henningsen P. et al. (2018). Management of functional somatic syndromes and bodily distress. Psychotherapy and Psychosomatics.', url: 'https://pubmed.ncbi.nlm.nih.gov/?term=Henningsen+2018+management+functional+somatic+syndromes+bodily+distress' },
+  { label: 'Flammer E., Alladin A. (2007). The efficacy of hypnotherapy in the treatment of psychosomatic disorders: meta-analytical evidence. International Journal of Clinical and Experimental Hypnosis.', url: 'https://pubmed.ncbi.nlm.nih.gov/17558717/' },
+  { label: 'Flik C.E. et al. (2019). Efficacy of individual and group hypnotherapy in irritable bowel syndrome (IMAGINE): a multicentre randomised controlled trial. The Lancet Gastroenterology & Hepatology.', url: 'https://pubmed.ncbi.nlm.nih.gov/30473202/' },
+  { label: 'Shenefelt P.D. (2000). Hypnosis in dermatology. Archives of Dermatology.', url: 'https://pubmed.ncbi.nlm.nih.gov/10724204/' },
+  { label: 'Henningsen P. et al. (2018). Management of functional somatic syndromes and bodily distress. Psychotherapy and Psychosomatics.', url: 'https://pubmed.ncbi.nlm.nih.gov/29306954/' },
 ];
 
 const content: Record<Locale, ArticleContent> = {

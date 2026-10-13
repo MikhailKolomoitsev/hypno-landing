@@ -7,10 +7,10 @@ const SLUG = 'yak-zlizty-z-antydepresantiv';
 const meta = ARTICLES.find((a) => a.slug === SLUG)!;
 
 const references: Reference[] = [
-  { label: 'Horowitz M.A., Taylor D. (2019). Tapering of SSRI treatment to mitigate withdrawal symptoms. The Lancet Psychiatry.', url: 'https://pubmed.ncbi.nlm.nih.gov/?term=Horowitz+Taylor+2019+tapering+SSRI+withdrawal+Lancet+Psychiatry' },
-  { label: 'Davies J., Read J. (2019). A systematic review into the incidence, severity and duration of antidepressant withdrawal effects. Addictive Behaviors.', url: 'https://pubmed.ncbi.nlm.nih.gov/?term=Davies+Read+2019+systematic+review+antidepressant+withdrawal+effects' },
+  { label: 'Horowitz M.A., Taylor D. (2019). Tapering of SSRI treatment to mitigate withdrawal symptoms. The Lancet Psychiatry.', url: 'https://pubmed.ncbi.nlm.nih.gov/30850328/' },
+  { label: 'Davies J., Read J. (2019). A systematic review into the incidence, severity and duration of antidepressant withdrawal effects. Addictive Behaviors.', url: 'https://pubmed.ncbi.nlm.nih.gov/30292574/' },
   { label: 'Royal College of Psychiatrists. Stopping antidepressants — patient information.', url: 'https://www.rcpsych.ac.uk/mental-health/treatments-and-wellbeing/stopping-antidepressants' },
-  { label: 'Milling L.S. et al. (2019). The effectiveness of hypnosis as an intervention for depression: a meta-analytic review. International Journal of Clinical and Experimental Hypnosis.', url: 'https://pubmed.ncbi.nlm.nih.gov/?term=Milling+2019+effectiveness+of+hypnosis+intervention+depression+meta-analytic' },
+  { label: 'Milling L.S., Valentine K.E., McCarley H.S., LoStimolo L.M. (2019). A meta-analysis of hypnotic interventions for depression symptoms: high hopes for hypnosis? American Journal of Clinical Hypnosis.', url: 'https://pubmed.ncbi.nlm.nih.gov/34874235/' },
 ];
 
 const content: Record<Locale, ArticleContent> = {

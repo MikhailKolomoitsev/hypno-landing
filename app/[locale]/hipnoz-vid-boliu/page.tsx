@@ -7,10 +7,10 @@ const SLUG = 'hipnoz-vid-boliu';
 const meta = ARTICLES.find((a) => a.slug === SLUG)!;
 
 const references: Reference[] = [
-  { label: 'Thompson T. et al. (2019). The effectiveness of hypnosis for pain relief: a systematic review and meta-analysis of 85 controlled experimental trials. Neuroscience & Biobehavioral Reviews.', url: 'https://pubmed.ncbi.nlm.nih.gov/?term=Thompson+2019+hypnosis+pain+relief+meta-analysis+85+trials' },
-  { label: 'Montgomery G.H., DuHamel K.N., Redd W.H. (2000). A meta-analysis of hypnotically induced analgesia: how effective is hypnosis? International Journal of Clinical and Experimental Hypnosis.', url: 'https://pubmed.ncbi.nlm.nih.gov/?term=Montgomery+DuHamel+Redd+2000+meta-analysis+hypnotically+induced+analgesia' },
-  { label: 'Jensen M.P., Patterson D.R. (2014). Hypnotic approaches for chronic pain management: clinical implications of recent research findings. American Psychologist.', url: 'https://pubmed.ncbi.nlm.nih.gov/?term=Jensen+Patterson+2014+hypnotic+approaches+chronic+pain+American+Psychologist' },
-  { label: 'Flik C.E. et al. (2019). Efficacy of individual and group hypnotherapy in irritable bowel syndrome (IMAGINE): a multicentre randomised controlled trial. The Lancet Gastroenterology & Hepatology.', url: 'https://pubmed.ncbi.nlm.nih.gov/?term=Flik+2019+hypnotherapy+irritable+bowel+syndrome+IMAGINE+Lancet' },
+  { label: 'Thompson T. et al. (2019). The effectiveness of hypnosis for pain relief: a systematic review and meta-analysis of 85 controlled experimental trials. Neuroscience & Biobehavioral Reviews.', url: 'https://pubmed.ncbi.nlm.nih.gov/30790634/' },
+  { label: 'Montgomery G.H., DuHamel K.N., Redd W.H. (2000). A meta-analysis of hypnotically induced analgesia: how effective is hypnosis? International Journal of Clinical and Experimental Hypnosis.', url: 'https://pubmed.ncbi.nlm.nih.gov/10769981/' },
+  { label: 'Jensen M.P., Patterson D.R. (2014). Hypnotic approaches for chronic pain management: clinical implications of recent research findings. American Psychologist.', url: 'https://pubmed.ncbi.nlm.nih.gov/24547802/' },
+  { label: 'Flik C.E. et al. (2019). Efficacy of individual and group hypnotherapy in irritable bowel syndrome (IMAGINE): a multicentre randomised controlled trial. The Lancet Gastroenterology & Hepatology.', url: 'https://pubmed.ncbi.nlm.nih.gov/30473202/' },
 ];
 
 const content: Record<Locale, ArticleContent> = {

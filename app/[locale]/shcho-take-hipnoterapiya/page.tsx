@@ -7,10 +7,10 @@ const SLUG = 'shcho-take-hipnoterapiya';
 const meta = ARTICLES.find((a) => a.slug === SLUG)!;
 
 const references: Reference[] = [
-  { label: 'Jiang H., White M.P., Greicius M.D., Waelde L.C., Spiegel D. (2017). Brain activity and functional connectivity associated with hypnosis. Cerebral Cortex.', url: 'https://pubmed.ncbi.nlm.nih.gov/?term=Jiang+Spiegel+2017+brain+activity+functional+connectivity+hypnosis+Cerebral+Cortex' },
-  { label: 'Jensen M.P. et al. (2017). New directions in hypnosis research: strategies for advancing the cognitive and clinical neuroscience of hypnosis. Neuroscience of Consciousness.', url: 'https://pubmed.ncbi.nlm.nih.gov/?term=Jensen+2017+new+directions+hypnosis+research+Neuroscience+of+Consciousness' },
-  { label: 'Thompson T. et al. (2019). The effectiveness of hypnosis for pain relief: a systematic review and meta-analysis of 85 controlled experimental trials. Neuroscience & Biobehavioral Reviews.', url: 'https://pubmed.ncbi.nlm.nih.gov/?term=Thompson+2019+hypnosis+pain+relief+meta-analysis+85+trials' },
-  { label: 'Milling L.S. et al. (2019). The effectiveness of hypnosis as an intervention for depression: a meta-analytic review. International Journal of Clinical and Experimental Hypnosis.', url: 'https://pubmed.ncbi.nlm.nih.gov/?term=Milling+2019+effectiveness+of+hypnosis+intervention+depression+meta-analytic' },
+  { label: 'Jiang H., White M.P., Greicius M.D., Waelde L.C., Spiegel D. (2017). Brain activity and functional connectivity associated with hypnosis. Cerebral Cortex.', url: 'https://pubmed.ncbi.nlm.nih.gov/27469596/' },
+  { label: 'Jensen M.P. et al. (2017). New directions in hypnosis research: strategies for advancing the cognitive and clinical neuroscience of hypnosis. Neuroscience of Consciousness.', url: 'https://pubmed.ncbi.nlm.nih.gov/29034102/' },
+  { label: 'Thompson T. et al. (2019). The effectiveness of hypnosis for pain relief: a systematic review and meta-analysis of 85 controlled experimental trials. Neuroscience & Biobehavioral Reviews.', url: 'https://pubmed.ncbi.nlm.nih.gov/30790634/' },
+  { label: 'Milling L.S., Valentine K.E., McCarley H.S., LoStimolo L.M. (2019). A meta-analysis of hypnotic interventions for depression symptoms: high hopes for hypnosis? American Journal of Clinical Hypnosis.', url: 'https://pubmed.ncbi.nlm.nih.gov/34874235/' },
 ];
 
 const content: Record<Locale, ArticleContent> = {

@@ -7,9 +7,9 @@ const SLUG = 'hipnoz-vid-tryvohy-panichni-ataky';
 const meta = ARTICLES.find((a) => a.slug === SLUG)!;
 
 const references: Reference[] = [
-  { label: 'Valentine K.E., Milling L.S., Clark L.J., Moriarty C.L. (2019). The efficacy of hypnosis as a treatment for anxiety: a meta-analysis. International Journal of Clinical and Experimental Hypnosis.', url: 'https://pubmed.ncbi.nlm.nih.gov/?term=Valentine+Milling+2019+efficacy+of+hypnosis+treatment+anxiety+meta-analysis' },
-  { label: 'Hammond D.C. (2010). Hypnosis in the treatment of anxiety- and stress-related disorders. Expert Review of Neurotherapeutics.', url: 'https://pubmed.ncbi.nlm.nih.gov/?term=Hammond+2010+hypnosis+treatment+anxiety+stress-related+disorders' },
-  { label: 'Jiang H. et al. (2017). Brain activity and functional connectivity associated with hypnosis. Cerebral Cortex.', url: 'https://pubmed.ncbi.nlm.nih.gov/?term=Jiang+Spiegel+2017+brain+activity+functional+connectivity+hypnosis+Cerebral+Cortex' },
+  { label: 'Valentine K.E., Milling L.S., Clark L.J., Moriarty C.L. (2019). The efficacy of hypnosis as a treatment for anxiety: a meta-analysis. International Journal of Clinical and Experimental Hypnosis.', url: 'https://pubmed.ncbi.nlm.nih.gov/31251710/' },
+  { label: 'Hammond D.C. (2010). Hypnosis in the treatment of anxiety- and stress-related disorders. Expert Review of Neurotherapeutics.', url: 'https://pubmed.ncbi.nlm.nih.gov/20136382/' },
+  { label: 'Jiang H. et al. (2017). Brain activity and functional connectivity associated with hypnosis. Cerebral Cortex.', url: 'https://pubmed.ncbi.nlm.nih.gov/27469596/' },
 ];
 
 const content: Record<Locale, ArticleContent> = {
