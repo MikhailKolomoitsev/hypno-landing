@@ -72,7 +72,6 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
     '@type': 'LocalBusiness',
     name: t.business,
     url: BASE_URL,
-    aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', bestRating: '5', worstRating: '1', ratingCount: String(videos.length) },
     review: videos.map((v) => ({
       '@type': 'Review',
       author: { '@type': 'Person', name: v.name?.[locale] ?? t.client },
