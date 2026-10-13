@@ -50,6 +50,10 @@ const content: Record<Locale, ArticleContent> = {
           { slug: 'rehresyvnyy-hipnoz', label: 'Регресивний гіпноз', text: 'Пошук кореня проблеми в минулому' },
           { slug: 'rozkryttya-tvorchoho-potentsialu', label: 'Творчий потенціал', text: 'Страх оцінки, синдром самозванця' },
           { slug: 'yak-zlizty-z-antydepresantiv', label: 'Відміна антидепресантів', text: 'Підтримка поруч із психіатром' },
+          { slug: 'hipnoz-vid-fobiy', label: 'Фобії та страхи', text: 'Польоти, висота, павуки, уколи' },
+          { slug: 'hipnoz-vid-prokrastynatsiyi', label: 'Прокрастинація', text: 'Самосаботаж, внутрішній опір' },
+          { slug: 'hipnoz-samootsinka-vpevnenist', label: 'Самооцінка', text: 'Синдром самозванця, внутрішній критик' },
+          { slug: 'hipnoz-vid-zalezhnostey', label: 'Залежності', text: 'Алкоголь, азартні ігри, екрани' },
         ],
       },
       {
@@ -135,6 +139,10 @@ const content: Record<Locale, ArticleContent> = {
           { slug: 'rehresyvnyy-hipnoz', label: 'Регрессивный гипноз', text: 'Поиск корня проблемы в прошлом' },
           { slug: 'rozkryttya-tvorchoho-potentsialu', label: 'Творческий потенциал', text: 'Страх оценки, синдром самозванца' },
           { slug: 'yak-zlizty-z-antydepresantiv', label: 'Отмена антидепрессантов', text: 'Поддержка рядом с психиатром' },
+          { slug: 'hipnoz-vid-fobiy', label: 'Фобии и страхи', text: 'Полёты, высота, пауки, уколы' },
+          { slug: 'hipnoz-vid-prokrastynatsiyi', label: 'Прокрастинация', text: 'Самосаботаж, внутреннее сопротивление' },
+          { slug: 'hipnoz-samootsinka-vpevnenist', label: 'Самооценка', text: 'Синдром самозванца, внутренний критик' },
+          { slug: 'hipnoz-vid-zalezhnostey', label: 'Зависимости', text: 'Алкоголь, азартные игры, экраны' },
         ],
       },
       {
@@ -220,6 +228,10 @@ const content: Record<Locale, ArticleContent> = {
           { slug: 'rehresyvnyy-hipnoz', label: 'Regression hypnosis', text: 'Finding the root of the problem in the past' },
           { slug: 'rozkryttya-tvorchoho-potentsialu', label: 'Creative potential', text: 'Fear of judgment, impostor syndrome' },
           { slug: 'yak-zlizty-z-antydepresantiv', label: 'Coming off antidepressants', text: 'Support alongside your psychiatrist' },
+          { slug: 'hipnoz-vid-fobiy', label: 'Phobias and fears', text: 'Flying, heights, spiders, needles' },
+          { slug: 'hipnoz-vid-prokrastynatsiyi', label: 'Procrastination', text: 'Self-sabotage, inner resistance' },
+          { slug: 'hipnoz-samootsinka-vpevnenist', label: 'Self-esteem', text: 'Impostor syndrome, inner critic' },
+          { slug: 'hipnoz-vid-zalezhnostey', label: 'Addictions', text: 'Alcohol, gambling, screens' },
         ],
       },
       {

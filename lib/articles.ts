@@ -20,6 +20,66 @@ export type ArticleMeta = {
  */
 export const ARTICLES: ArticleMeta[] = [
   {
+    slug: 'hipnoz-vid-fobiy',
+    published: '2026-10-13',
+    modified: '2026-10-13',
+    title: {
+      uk: 'Гіпноз від фобій і страхів: як прибрати страх за 1–3 сесії',
+      ru: 'Гипноз от фобий и страхов: как убрать страх за 1–3 сессии',
+      en: 'Hypnosis for Phobias and Fears: Removing Fear in 1–3 Sessions',
+    },
+    short: {
+      uk: 'Чому логіка не допомагає проти фобії, що показують дослідження і як гіпноз перепрограмовує реакцію страху.',
+      ru: 'Почему логика не помогает против фобии, что показывают исследования и как гипноз перепрограммирует реакцию страха.',
+      en: 'Why logic does not work against a phobia, what research shows and how hypnosis reprograms the fear response.',
+    },
+  },
+  {
+    slug: 'hipnoz-vid-prokrastynatsiyi',
+    published: '2026-10-13',
+    modified: '2026-10-13',
+    title: {
+      uk: 'Гіпноз від прокрастинації та самосаботажу',
+      ru: 'Гипноз от прокрастинации и самосаботажа',
+      en: 'Hypnosis for Procrastination and Self-Sabotage',
+    },
+    short: {
+      uk: 'Прокрастинація — не лінощі, а спосіб уникати емоції. Як гіпнотерапія знаходить і знімає внутрішній опір.',
+      ru: 'Прокрастинация — не лень, а способ избегать эмоции. Как гипнотерапия находит и снимает внутреннее сопротивление.',
+      en: 'Procrastination is not laziness but a way of avoiding emotion. How hypnotherapy finds and removes inner resistance.',
+    },
+  },
+  {
+    slug: 'hipnoz-samootsinka-vpevnenist',
+    published: '2026-10-13',
+    modified: '2026-10-13',
+    title: {
+      uk: 'Гіпноз для самооцінки та впевненості в собі',
+      ru: 'Гипноз для самооценки и уверенности в себе',
+      en: 'Hypnosis for Self-Esteem and Confidence',
+    },
+    short: {
+      uk: 'Звідки береться «я недостатньо хороший», чому афірмації не працюють і як гіпноз змінює образ себе на глибині.',
+      ru: 'Откуда берётся «я недостаточно хорош», почему аффирмации не работают и как гипноз меняет образ себя на глубине.',
+      en: 'Where "I am not good enough" comes from, why affirmations fail and how hypnosis changes your self-image at depth.',
+    },
+  },
+  {
+    slug: 'hipnoz-vid-zalezhnostey',
+    published: '2026-10-13',
+    modified: '2026-10-13',
+    title: {
+      uk: 'Гіпноз від залежностей: алкоголь, азартні ігри, екрани',
+      ru: 'Гипноз от зависимостей: алкоголь, азартные игры, экраны',
+      en: 'Hypnosis for Addictions: Alcohol, Gambling, Screens',
+    },
+    short: {
+      uk: 'Чесно про те, де гіпноз допомагає при залежностях, де потрібен нарколог, і як проходить робота з тягою та тригерами.',
+      ru: 'Честно о том, где гипноз помогает при зависимостях, где нужен нарколог, и как проходит работа с тягой и триггерами.',
+      en: 'Honestly about where hypnosis helps with addictions, where you need a specialist, and how work with cravings and triggers goes.',
+    },
+  },
+  {
     slug: 'shcho-take-hipnoterapiya',
     published: '2026-10-12',
     modified: '2026-10-12',
