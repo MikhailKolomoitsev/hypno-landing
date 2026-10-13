@@ -11,6 +11,7 @@ import {
   articleUrl,
   type ArticleMeta,
   type Locale,
+  ogImage,
 } from '../../../lib/articles';
 
 export type Step = { title: string; text: string; list?: string[] };
@@ -94,7 +95,7 @@ export function articleMetadata(locale: Locale, meta: ArticleMeta, t: ArticleCon
       publishedTime: meta.published,
       modifiedTime: meta.modified,
       authors: [`${BASE_URL}/${locale}`],
-      images: [{ url: '/og-image.jpg', width: 1200, height: 630 }],
+      images: [ogImage(meta.title[locale], locale)],
     },
   };
 }

@@ -4,7 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import JsonLd from '../../components/JsonLd';
 import SiteFooter from './SiteFooter';
-import { BASE_URL, LOCALES, TELEGRAM_URL, type Locale } from '../../../lib/articles';
+import { BASE_URL, LOCALES, TELEGRAM_URL, ogImage, type Locale } from '../../../lib/articles';
 
 export type Faq = { q: string; a: string };
 
@@ -31,7 +31,7 @@ export function serviceMetadata(locale: Locale, slug: string, title: string, des
       url,
       title,
       description,
-      images: [{ url: '/og-image.jpg', width: 1200, height: 630 }],
+      images: [ogImage(title, locale)],
     },
   };
 }

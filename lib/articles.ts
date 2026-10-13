@@ -144,3 +144,10 @@ export const ARTICLES: ArticleMeta[] = [
 export const isLocale = (l: string): l is Locale => (LOCALES as string[]).includes(l);
 
 export const articleUrl = (locale: Locale, slug: string) => `${BASE_URL}/${locale}/${slug}`;
+
+/** Dynamic OG image for a page title (see app/api/og/route.tsx). */
+export const ogImage = (title: string, locale: Locale) => ({
+  url: `${BASE_URL}/api/og?title=${encodeURIComponent(title.replace(/\s*\|\s*kolomoitsev\.com$/, ''))}&locale=${locale}`,
+  width: 1200,
+  height: 630,
+});
