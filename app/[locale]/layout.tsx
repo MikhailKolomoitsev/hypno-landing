@@ -52,6 +52,7 @@ export async function generateMetadata({
         "ru": "https://kolomoitsev.com/ru",
         "uk": "https://kolomoitsev.com/uk",
         "en": "https://kolomoitsev.com/en",
+        "x-default": "https://kolomoitsev.com/uk",
       },
     },
     openGraph: {

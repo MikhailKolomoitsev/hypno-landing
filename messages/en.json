@@ -71,7 +71,20 @@
     "q4": "Are online sessions as effective as in-person?",
     "a4": "Yes. Online sessions are just as effective. All you need is a quiet space and headphones. Thousands of clients worldwide get excellent results online.",
     "q5": "What if I don't get results?",
-    "a5": "I offer a 100% results guarantee. If you don't feel a change after the session — I'll refund you in full, no questions asked."
+    "a5": "I offer a 100% results guarantee. If you don't feel a change after the session — I'll refund you in full, no questions asked.",
+    "readMore": "Read more",
+    "q6": "Does hypnosis help with depression?",
+    "a6": "For mild to moderate depressive states, yes, as a standalone method or alongside psychiatric treatment. A 2019 meta-analysis found the average hypnotherapy participant improved more than 76% of controls. For severe depression, a doctor comes first.",
+    "q7": "Does hypnosis work for chronic pain?",
+    "a7": "Yes, it is one of the best-researched areas: a meta-analysis of 85 trials confirms a reliable reduction in pain intensity. Hypnosis changes how the brain processes the pain signal and complements medical treatment.",
+    "q8": "What are psychosomatic symptoms, and does hypnosis help?",
+    "a8": "A psychosomatic symptom is real pain, spasm or rash triggered not by organ damage but by the nervous system responding to an unprocessed emotion. Hypnosis works with exactly that link, so for IBS, tension headaches or stress-related skin flare-ups it delivers good results.",
+    "q9": "Can hypnosis help me come off antidepressants?",
+    "a9": "Tapering is led only by your psychiatrist; I do not change prescriptions. Hypnotherapy works with the cause of depression and helps you get through the taper without the state returning.",
+    "q10": "Does hypnosis help with anxiety and panic attacks?",
+    "a10": "Yes. A 2019 meta-analysis: the average participant receiving hypnosis showed less anxiety than 79% of controls. Usually 3–5 sessions; a specific phobia, 1–3.",
+    "q11": "Can insomnia be treated with hypnosis?",
+    "a11": "For psychophysiological insomnia, when the brain \"won't switch off\" because of anxiety and the \"bed = tension\" reflex, yes. In sleep-lab studies hypnotic suggestion increased the share of deep sleep. Usually 2–4 sessions."
   },
   "about": {
     "label": "About the specialist",

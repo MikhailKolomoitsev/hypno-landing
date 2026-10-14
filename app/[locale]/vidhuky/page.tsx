@@ -2,23 +2,10 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import ServiceShell, { CODE_WORD, CtaText, serviceMetadata } from '../components/ServiceShell';
 import { BASE_URL, LOCALES, isLocale, type Locale } from '../../../lib/articles';
+import { testimonialsFor } from '../../../lib/testimonials';
 
 const SLUG = 'vidhuky';
 
-// youtubeId + optional client first name; names are shown per locale
-const VIDEOS = [
-  { youtubeId: 'gpPFMAvc2vI', name: { uk: 'Оля', ru: 'Оля', en: 'Olya' } },
-  { youtubeId: 'Q_HsnObwtwI' },
-  { youtubeId: 'Q5sK6CtgGjk', name: { uk: 'Валерій', ru: 'Валерий', en: 'Valerii' } },
-  { youtubeId: 'K8YPEOkdExg', name: { uk: 'Олена', ru: 'Елена', en: 'Olena' } },
-  { youtubeId: '4l5cSAPt57U', name: { uk: 'Олександр', ru: 'Александр', en: 'Oleksandr' } },
-  { youtubeId: '-1Ms6Jk2V2M' },
-  { youtubeId: 'FQ40Du6B4mA' },
-  { youtubeId: 'EULa61gySNE' },
-  { youtubeId: '71CglstaVWM' },
-  { youtubeId: '09mqrFk_VzM' },
-  { youtubeId: 'c3_NDzdvNo4' },
-];
 
 const content = {
   uk: {
@@ -65,7 +52,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
   const { locale } = await params;
   if (!isLocale(locale)) notFound();
   const t = content[locale];
-  const videos = VIDEOS.map((v) => ({ ...v, title: v.name ? `${t.review} ${v.name[locale]}` : t.client }));
+  const videos = testimonialsFor(locale);
 
   const reviewsJsonLd = {
     '@context': 'https://schema.org',
@@ -74,7 +61,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
     url: BASE_URL,
     review: videos.map((v) => ({
       '@type': 'Review',
-      author: { '@type': 'Person', name: v.name?.[locale] ?? t.client },
+      author: { '@type': 'Person', name: v.name ?? t.client },
       reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
       reviewBody: t.reviewBody,
     })),

@@ -42,7 +42,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     description: t.description,
     alternates: {
       canonical: `${BASE_URL}/${locale}/blog`,
-      languages: Object.fromEntries(LOCALES.map((l) => [l, `${BASE_URL}/${l}/blog`])),
+      languages: { ...Object.fromEntries(LOCALES.map((l) => [l, `${BASE_URL}/${l}/blog`])), 'x-default': `${BASE_URL}/uk/blog` },
     },
   };
 }

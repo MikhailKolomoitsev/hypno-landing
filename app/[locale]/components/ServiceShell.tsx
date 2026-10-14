@@ -25,7 +25,7 @@ export function serviceMetadata(locale: Locale, slug: string, title: string, des
     description,
     alternates: {
       canonical: url,
-      languages: Object.fromEntries(LOCALES.map((l) => [l, `${BASE_URL}/${l}/${slug}`])),
+      languages: { ...Object.fromEntries(LOCALES.map((l) => [l, `${BASE_URL}/${l}/${slug}`])), 'x-default': `${BASE_URL}/uk/${slug}` },
     },
     openGraph: {
       type: 'website',

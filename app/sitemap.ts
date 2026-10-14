@@ -2,7 +2,11 @@ import type { MetadataRoute } from "next";
 import { ARTICLES, BASE_URL, LOCALES } from "../lib/articles";
 
 /** Bump when static pages change materially — a constantly moving date gets ignored by crawlers. */
-const SITE_UPDATED = new Date("2026-10-12");
+const SITE_UPDATED = new Date("2026-10-14");
+
+const alternates = (path: string) => ({
+  languages: Object.fromEntries([...LOCALES.map((l) => [l, `${BASE_URL}/${l}${path}`]), ["x-default", `${BASE_URL}/uk${path}`]]),
+});
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const mainPages = LOCALES.map((locale) => ({
@@ -10,6 +14,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: SITE_UPDATED,
     changeFrequency: "monthly" as const,
     priority: 1,
+    alternates: alternates(""),
   }));
 
   const seoPages = [
@@ -27,6 +32,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: SITE_UPDATED,
       changeFrequency: "monthly" as const,
       priority,
+      alternates: alternates(`/${slug}`),
     })),
   );
 
@@ -35,6 +41,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: new Date(ARTICLES.map((a) => a.modified).sort().at(-1)!),
     changeFrequency: "weekly" as const,
     priority: 0.8,
+    alternates: alternates("/blog"),
   }));
 
   const articlePages = ARTICLES.flatMap((a) =>
@@ -43,6 +50,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(a.modified),
       changeFrequency: "monthly" as const,
       priority: 0.75,
+      alternates: alternates(`/${a.slug}`),
     })),
   );
 

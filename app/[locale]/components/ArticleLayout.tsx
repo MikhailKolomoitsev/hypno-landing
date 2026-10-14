@@ -84,7 +84,7 @@ export function articleMetadata(locale: Locale, meta: ArticleMeta, t: ArticleCon
     description: t.metaDescription,
     alternates: {
       canonical: url,
-      languages: Object.fromEntries(LOCALES.map((l) => [l, articleUrl(l, meta.slug)])),
+      languages: { ...Object.fromEntries(LOCALES.map((l) => [l, articleUrl(l, meta.slug)])), 'x-default': articleUrl('uk', meta.slug) },
     },
     openGraph: {
       type: 'article',

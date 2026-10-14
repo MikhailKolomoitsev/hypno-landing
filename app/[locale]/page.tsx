@@ -5,29 +5,18 @@ import { useState, useEffect, useRef } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
 import { ARTICLES, type Locale } from '../../lib/articles';
 import { NAV_UI, SERVICE_PAGES } from '../../lib/pages';
+import { testimonialsFor } from '../../lib/testimonials';
 import VideoCarousel from './components/VideoCarousel';
 import LanguageSwitcher from './components/LanguageSwitcher';
 import SiteNav from './components/SiteNav';
 
 const SECTIONS = ['hero', 'problems', 'video', 'stats', 'about', 'testimonials', 'faq', 'cta'];
 
-const testimonials = [
-  { id: '1',  title: 'Відгук Оля',      youtubeId: 'gpPFMAvc2vI' },
-  { id: '2',  title: '',                youtubeId: 'Q_HsnObwtwI' },
-  { id: '3',  title: 'Отзыв Валерия',   youtubeId: 'Q5sK6CtgGjk' },
-  { id: '4',  title: 'Отзыв Elena',     youtubeId: 'K8YPEOkdExg' },
-  { id: '5',  title: 'Отзыв Александр', youtubeId: '4l5cSAPt57U' },
-  { id: '6',  title: '',                youtubeId: '-1Ms6Jk2V2M' },
-  { id: '7',  title: '',                youtubeId: 'FQ40Du6B4mA' },
-  { id: '8',  title: '',                youtubeId: 'EULa61gySNE' },
-  { id: '9',  title: '',                youtubeId: '71CglstaVWM' },
-  { id: '10', title: '',                youtubeId: '09mqrFk_VzM' },
-  { id: '11', title: '',                youtubeId: 'c3_NDzdvNo4' },
-];
 
 export default function Home() {
   const t = useTranslations();
   const locale = useLocale() as Locale;
+  const testimonials = testimonialsFor(locale);
   // Lock body scroll for snap experience — restore on unmount
   useEffect(() => {
     document.body.classList.add('snap-page');
@@ -87,7 +76,13 @@ export default function Home() {
     { q: t('faq.q3'), a: t('faq.a3') },
     { q: t('faq.q4'), a: t('faq.a4') },
     { q: t('faq.q5'), a: t('faq.a5') },
-  ];
+    { q: t('faq.q6'),  a: t('faq.a6'),  link: 'hipnoz-pry-depresiyi' },
+    { q: t('faq.q7'),  a: t('faq.a7'),  link: 'hipnoz-vid-boliu' },
+    { q: t('faq.q8'),  a: t('faq.a8'),  link: 'hipnoz-psykhosomatyka' },
+    { q: t('faq.q9'),  a: t('faq.a9'),  link: 'yak-zlizty-z-antydepresantiv' },
+    { q: t('faq.q10'), a: t('faq.a10'), link: 'hipnoz-vid-tryvohy-panichni-ataky' },
+    { q: t('faq.q11'), a: t('faq.a11'), link: 'hipnoz-vid-bezsonnya' },
+  ] as { q: string; a: string; link?: string }[];
 
   return (
     <>
@@ -215,8 +210,10 @@ export default function Home() {
               <div className="relative w-64 xl:w-72 h-80 xl:h-96 rounded-3xl overflow-hidden border border-white/10 shadow-2xl shadow-purple-900/30">
                 <Image
                   src="/hero-photo.jpg"
-                  alt="Михайло Коломийцев — гіпнотерапевт онлайн"
+                  alt={locale === 'en' ? 'Mykhailo Kolomoitsev — online hypnotherapist' : locale === 'ru' ? 'Михаил Коломойцев — гипнотерапевт онлайн' : 'Михайло Коломийцев — гіпнотерапевт онлайн'}
                   fill
+                  priority
+                  sizes="(min-width: 1280px) 288px, (min-width: 1024px) 256px, 0px"
                   className="object-cover object-top"
                 />
               </div>
@@ -432,6 +429,11 @@ export default function Home() {
                   {openFaq === i && (
                     <div className="px-5 pb-4 text-gray-400 text-sm leading-relaxed border-t border-white/5 pt-3">
                       {faq.a}
+                      {faq.link && (
+                        <a href={`/${locale}/${faq.link}`} className="block mt-2 text-green-400 hover:text-green-300 text-xs font-medium">
+                          {t('faq.readMore')} →
+                        </a>
+                      )}
                     </div>
                   )}
                 </div>
