@@ -1,5 +1,9 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import type { Metadata } from 'next';
+
+// Lead magnet delivered by email after subscription — keep out of search.
+export const metadata: Metadata = { robots: { index: false, follow: false } };
 
 export default function Guide() {
   return (

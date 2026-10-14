@@ -19,3 +19,15 @@ export const NAV_UI: Record<Locale, { home: string; pages: string; method: strin
   ru: { home: 'Главная', pages: 'Страницы', method: 'О методе', articles: 'Статьи', allArticles: 'Все статьи', book: 'Записаться', menu: 'Меню' },
   en: { home: 'Home', pages: 'Pages', method: 'The method', articles: 'Articles', allArticles: 'All articles', book: 'Book a session', menu: 'Menu' },
 };
+
+/** Service slug -> related article slugs, shown as "read also" on service pages. */
+export const SERVICE_RELATED: Record<string, string[]> = {
+  'vidhuky':                        ['shcho-take-hipnoterapiya', 'hipnoz-vid-fobiy', 'hipnoz-vid-tryvohy-panichni-ataky'],
+  'hipnoterapevt-onlayn':           ['shcho-take-hipnoterapiya', 'hipnoz-vid-tryvohy-panichni-ataky', 'hipnoz-vid-bezsonnya'],
+  'hipnoz-protypokazannya':         ['shcho-take-hipnoterapiya', 'hipnoz-pry-depresiyi', 'yak-zlizty-z-antydepresantiv'],
+  'skilky-seansi-hipnozu':          ['shcho-take-hipnoterapiya', 'hipnoz-vid-fobiy', 'hipnoz-vid-zalezhnostey'],
+  'hipnoz-dlya-schudnennya':        ['hipnoz-psykhosomatyka', 'hipnoz-samootsinka-vpevnenist', 'hipnoz-vid-zalezhnostey'],
+  'hipnoz-kynuty-palyty':           ['hipnoz-vid-zalezhnostey', 'hipnoz-vid-tryvohy-panichni-ataky', 'shcho-take-hipnoterapiya'],
+  'rehresyvnyy-hipnoz':             ['hipnoz-vid-fobiy', 'hipnoz-psykhosomatyka', 'hipnoz-samootsinka-vpevnenist'],
+  'rozkryttya-tvorchoho-potentsialu': ['hipnoz-samootsinka-vpevnenist', 'hipnoz-vid-prokrastynatsiyi', 'yak-pereproshyty-mozok-dlya-hroshey'],
+};

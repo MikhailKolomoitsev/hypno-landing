@@ -4,14 +4,16 @@ import Image from 'next/image';
 import Link from 'next/link';
 import JsonLd from '../../components/JsonLd';
 import SiteFooter from './SiteFooter';
-import { BASE_URL, LOCALES, TELEGRAM_URL, ogImage, type Locale } from '../../../lib/articles';
+import { ARTICLES, BASE_URL, LOCALES, TELEGRAM_URL, ogImage, type Locale } from '../../../lib/articles';
+import { SERVICE_RELATED } from '../../../lib/pages';
 
 export type Faq = { q: string; a: string };
+export type Reference = { label: string; url: string };
 
-export const UI: Record<Locale, { home: string; book: string; author: string; jobTitle: string; cert: string }> = {
-  uk: { home: 'Головна', book: 'Записатися', author: 'Михайло Коломийцев', jobTitle: 'Гіпнотерапевт', cert: 'Certified Master Hypnotherapist' },
-  ru: { home: 'Главная', book: 'Записаться', author: 'Михаил Коломойцев', jobTitle: 'Гипнотерапевт', cert: 'Certified Master Hypnotherapist' },
-  en: { home: 'Home', book: 'Book a session', author: 'Mykhailo Kolomoitsev', jobTitle: 'Hypnotherapist', cert: 'Certified Master Hypnotherapist' },
+export const UI: Record<Locale, { home: string; book: string; author: string; jobTitle: string; cert: string; references: string; readAlso: string }> = {
+  uk: { home: 'Головна', book: 'Записатися', author: 'Михайло Коломийцев', jobTitle: 'Гіпнотерапевт', cert: 'Certified Master Hypnotherapist', references: 'Джерела', readAlso: 'Читайте також' },
+  ru: { home: 'Главная', book: 'Записаться', author: 'Михаил Коломойцев', jobTitle: 'Гипнотерапевт', cert: 'Certified Master Hypnotherapist', references: 'Источники', readAlso: 'Читайте также' },
+  en: { home: 'Home', book: 'Book a session', author: 'Mykhailo Kolomoitsev', jobTitle: 'Hypnotherapist', cert: 'Certified Master Hypnotherapist', references: 'References', readAlso: 'Read also' },
 };
 
 const OG_LOCALE: Record<Locale, string> = { uk: 'uk_UA', ru: 'ru_RU', en: 'en_US' };
@@ -50,6 +52,7 @@ type Props = {
   hero?: ReactNode;
   children: ReactNode;
   faq?: Faq[];
+  references?: Reference[];
   cta: { title: string; text: ReactNode; button: string; note?: string };
   wide?: boolean;
   extraJsonLd?: object[];
@@ -57,9 +60,10 @@ type Props = {
 
 export default function ServiceShell({
   locale, slug, breadcrumb, serviceName, serviceDescription,
-  titleLine1, titleLine2, lead, hero, children, faq, cta, wide, extraJsonLd = [],
+  titleLine1, titleLine2, lead, hero, children, faq, references, cta, wide, extraJsonLd = [],
 }: Props) {
   const ui = UI[locale];
+  const related = (SERVICE_RELATED[slug] ?? []).map((s) => ARTICLES.find((a) => a.slug === s)).filter((a): a is NonNullable<typeof a> => !!a);
   const url = `${BASE_URL}/${locale}/${slug}`;
 
   const provider = {
@@ -153,6 +157,19 @@ export default function ServiceShell({
           </section>
         ) : null}
 
+        {references?.length ? (
+          <section className="mt-10">
+            <h2 className="text-white text-lg font-bold mb-3">{ui.references}</h2>
+            <ol className="list-decimal pl-5 space-y-1 text-sm text-gray-500">
+              {references.map((r) => (
+                <li key={r.url}>
+                  <a href={r.url} target="_blank" rel="noopener noreferrer" className="hover:text-green-400 underline decoration-white/20">{r.label}</a>
+                </li>
+              ))}
+            </ol>
+          </section>
+        ) : null}
+
         <div className="mt-14 p-8 rounded-3xl border border-white/10 bg-gradient-to-br from-purple-900/30 to-black/30 text-center">
           <h2 className="text-white text-2xl font-bold mb-3">{cta.title}</h2>
           <p className="text-gray-400 text-sm mb-6">{cta.text}</p>
@@ -162,6 +179,20 @@ export default function ServiceShell({
           </a>
           <p className="mt-4 text-xs text-gray-600">{cta.note ?? `${ui.cert} · ${ui.author}`}</p>
         </div>
+
+        {related.length > 0 && (
+          <section className="mt-14">
+            <h2 className="text-white text-xl font-bold mb-4">{ui.readAlso}</h2>
+            <div className="grid sm:grid-cols-3 gap-3">
+              {related.map((a) => (
+                <Link key={a.slug} href={`/${locale}/${a.slug}`} className="p-4 rounded-xl border border-white/8 bg-white/3 hover:border-green-500/30 hover:bg-white/5 transition-colors block">
+                  <div className="text-white text-sm font-medium mb-1">{a.title[locale]}</div>
+                  <div className="text-gray-500 text-xs">{a.short[locale]}</div>
+                </Link>
+              ))}
+            </div>
+          </section>
+        )}
       </main>
       <SiteFooter locale={locale} />
     </div>

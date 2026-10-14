@@ -1,9 +1,15 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import ServiceShell, { CODE_WORD, CtaText, serviceMetadata } from '../components/ServiceShell';
+import ServiceShell, { CODE_WORD, CtaText, serviceMetadata, type Reference } from '../components/ServiceShell';
 import { LOCALES, isLocale, type Locale } from '../../../lib/articles';
 
 const SLUG = 'hipnoz-kynuty-palyty';
+
+const references: Reference[] = [
+  { label: 'Hasan F.M. et al. (2014). Hypnotherapy is more effective than nicotine replacement therapy for smoking cessation: results of a randomized controlled trial. Complementary Therapies in Medicine.', url: 'https://pubmed.ncbi.nlm.nih.gov/24559809/' },
+  { label: 'Elkins G. et al. (2006). Intensive hypnotherapy for smoking cessation: a prospective study. International Journal of Clinical and Experimental Hypnosis.', url: 'https://pubmed.ncbi.nlm.nih.gov/16766441/' },
+  { label: 'Barnes J. et al. (2019). Hypnotherapy for smoking cessation. Cochrane Database of Systematic Reviews.', url: 'https://pubmed.ncbi.nlm.nih.gov/31198991/' },
+];
 
 const content = {
   uk: {
@@ -12,7 +18,7 @@ const content = {
     breadcrumb: 'Гіпноз — кинути палити',
     title1: 'Гіпноз від куріння:', title2: 'кинути палити за 1–3 сесії',
     lead: 'Куріння тримається не лише на фізичній залежності від нікотину — це ще й звичка, ритуал, частина дня. Гіпноз працює саме з цією психологічною частиною, тому й дає те, чого пластирі та жуйки дати не можуть.',
-    statValue: '77%', statLabel: 'ефективність гіпнозу при лікуванні нікотинової залежності', statSource: '(за даними дослідження American Health Magazine)',
+    statValue: '36,6% vs 18%', statLabel: 'не курили через 26 тижнів: гіпнотерапія проти нікотинових пластирів', statSource: 'рандомізоване дослідження Hasan et al., 2014 (джерела внизу сторінки)', evidenceNote: 'Чесно про докази: Cochrane-огляд 2019 року не знайшов достатньо якісних досліджень, щоб стверджувати перевагу гіпнозу над іншими методами. Окремі рандомізовані дослідження показують хороші результати, але я не обіцяю «гарантовано кинете за одну сесію».',
     whyTitle: 'Чому пластирі і жуйки не допомагають?',
     whyIntro: 'Нікотинозамінна терапія справляється з фізичним потягом. Але куріння — це ще й:',
     whyList: ['Ритуал: кава + сигарета, перерва + сигарета', 'Спосіб справлятися зі стресом', 'Соціальна звичка (всі палять — і я)', 'Підсвідоме переконання: «сигарета мене заспокоює»'],
@@ -40,7 +46,7 @@ const content = {
     breadcrumb: 'Гипноз — бросить курить',
     title1: 'Гипноз от курения:', title2: 'бросить курить за 1–3 сессии',
     lead: 'Курение держится не только на физической зависимости от никотина — это ещё и привычка, ритуал, часть дня. Гипноз работает именно с этой психологической частью, поэтому и даёт то, чего пластыри и жвачки дать не могут.',
-    statValue: '77%', statLabel: 'эффективность гипноза при лечении никотиновой зависимости', statSource: '(по данным исследования American Health Magazine)',
+    statValue: '36,6% vs 18%', statLabel: 'не курили через 26 недель: гипнотерапия против никотиновых пластырей', statSource: 'рандомизированное исследование Hasan et al., 2014 (источники внизу страницы)', evidenceNote: 'Честно о доказательствах: Cochrane-обзор 2019 года не нашёл достаточно качественных исследований, чтобы утверждать превосходство гипноза над другими методами. Отдельные рандомизированные исследования показывают хорошие результаты, но я не обещаю «гарантированно бросите за одну сессию».',
     whyTitle: 'Почему пластыри и жвачки не помогают?',
     whyIntro: 'Никотинозаместительная терапия справляется с физической тягой. Но курение — это ещё и:',
     whyList: ['Ритуал: кофе + сигарета, перерыв + сигарета', 'Способ справляться со стрессом', 'Социальная привычка (все курят — и я)', 'Подсознательное убеждение: «сигарета меня успокаивает»'],
@@ -68,7 +74,7 @@ const content = {
     breadcrumb: 'Hypnosis to quit smoking',
     title1: 'Hypnosis to Quit Smoking:', title2: 'stop in 1–3 sessions',
     lead: 'Smoking is held in place not only by physical nicotine dependence but also by habit, ritual, a part of your day. Hypnosis works with exactly this psychological part, which is why it delivers what patches and gum cannot.',
-    statValue: '77%', statLabel: 'effectiveness of hypnosis in treating nicotine dependence', statSource: '(according to a study cited by American Health Magazine)',
+    statValue: '36.6% vs 18%', statLabel: 'abstinent at 26 weeks: hypnotherapy versus nicotine patches', statSource: 'randomized trial, Hasan et al., 2014 (references at the bottom of the page)', evidenceNote: 'Honestly about the evidence: the 2019 Cochrane review did not find enough high-quality studies to claim hypnosis beats other methods. Individual randomized trials show good results, but I do not promise you will "definitely quit in one session".',
     whyTitle: 'Why patches and gum do not help',
     whyIntro: 'Nicotine replacement handles the physical craving. But smoking is also:',
     whyList: ['A ritual: coffee + cigarette, break + cigarette', 'A way of coping with stress', 'A social habit (everyone smokes, so do I)', 'A subconscious belief: "a cigarette calms me down"'],
@@ -110,11 +116,13 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
       locale={locale} slug={SLUG} breadcrumb={t.breadcrumb} serviceDescription={t.metaDescription}
       titleLine1={t.title1} titleLine2={t.title2} lead={t.lead}
       faq={[{ q: t.countTitle, a: `${t.count1a}${t.count1strong}${t.count1b} ${t.count2}` }, { q: t.withdrawalTitle, a: t.withdrawal }]}
+      references={references}
       cta={{ title: t.ctaTitle, text: <CtaText before={t.ctaBefore} locale={locale} after={t.ctaAfter} />, button: CODE_WORD[locale].button }}
     >
       <div className="p-6 rounded-2xl border border-green-500/20 bg-green-500/5 mb-10 text-center">
         <div className="text-4xl font-bold text-green-400 mb-1">{t.statValue}</div>
         <div className="text-gray-400 text-sm">{t.statLabel}<br /><span className="text-gray-600 text-xs">{t.statSource}</span></div>
+        <p className="mt-4 text-left text-xs text-gray-500 leading-relaxed border-t border-white/5 pt-3">{t.evidenceNote}</p>
       </div>
 
       <section className="space-y-10 text-gray-300 leading-relaxed">
