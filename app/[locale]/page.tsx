@@ -6,17 +6,21 @@ import { useLocale, useTranslations } from 'next-intl';
 import { ARTICLES, type Locale } from '../../lib/articles';
 import { NAV_UI, SERVICE_PAGES } from '../../lib/pages';
 import { testimonialsFor } from '../../lib/testimonials';
+import Link from 'next/link';
 import VideoCarousel from './components/VideoCarousel';
 import LanguageSwitcher from './components/LanguageSwitcher';
 import SiteNav from './components/SiteNav';
 
-const SECTIONS = ['hero', 'problems', 'video', 'stats', 'about', 'testimonials', 'faq', 'cta'];
+const SECTIONS = ['hero', 'problems', 'video', 'stats', 'about', 'testimonials', 'faq', 'articles', 'cta'];
 
 
 export default function Home() {
   const t = useTranslations();
   const locale = useLocale() as Locale;
   const testimonials = testimonialsFor(locale);
+  const featuredArticles = ['shcho-take-hipnoterapiya', 'hipnoz-vid-tryvohy-panichni-ataky', 'hipnoz-pry-depresiyi', 'hipnoz-vid-boliu', 'hipnoz-psykhosomatyka', 'hipnoz-vid-bezsonnya']
+    .map((slug) => ARTICLES.find((a) => a.slug === slug))
+    .filter((a): a is NonNullable<typeof a> => !!a);
   // Lock body scroll for snap experience — restore on unmount
   useEffect(() => {
     document.body.classList.add('snap-page');
@@ -438,6 +442,32 @@ export default function Home() {
                   )}
                 </div>
               ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ─── 7b. ARTICLES ─────────────────────────────────── */}
+        <section data-section="articles" className="snap-start snap-always h-screen flex flex-col items-center justify-center px-4">
+          <div className="w-full max-w-3xl">
+            <div className="text-center mb-8">
+              <span className="text-xs font-semibold tracking-widest text-green-400 uppercase">{t('articles.label')}</span>
+              <h2 className="text-white text-3xl sm:text-4xl font-bold mt-2" style={{letterSpacing: '-0.02em'}}>{t('articles.title')}</h2>
+              <p className="text-gray-400 text-sm mt-3 max-w-xl mx-auto">{t('articles.desc')}</p>
+            </div>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+              {featuredArticles.map((a) => (
+                <Link
+                  key={a.slug}
+                  href={`/${locale}/${a.slug}`}
+                  className="p-4 rounded-xl border border-white/8 bg-white/3 backdrop-blur-sm hover:border-green-500/30 hover:bg-white/5 transition-colors block"
+                >
+                  <div className="text-white text-sm font-medium mb-1 leading-snug">{a.title[locale]}</div>
+                  <div className="text-gray-500 text-xs leading-relaxed">{a.short[locale]}</div>
+                </Link>
+              ))}
+            </div>
+            <div className="text-center mt-6">
+              <Link href={`/${locale}/blog`} className="text-green-400 hover:text-green-300 text-sm font-medium">{t('articles.all')} →</Link>
             </div>
           </div>
         </section>

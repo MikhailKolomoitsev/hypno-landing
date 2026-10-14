@@ -106,5 +106,11 @@
     "button": "Send \"Restart\"",
     "footer": "I respond within an hour · No commitment",
     "copyright": "Professional Hypnotherapy · kolomoitsev.com"
+  },
+  "articles": {
+    "label": "Articles",
+    "title": "Go deeper",
+    "desc": "What research shows, how the work goes and what to realistically expect, with no magic or promises.",
+    "all": "All articles"
   }
 }
