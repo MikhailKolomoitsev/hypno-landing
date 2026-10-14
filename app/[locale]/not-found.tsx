@@ -1,7 +1,5 @@
-'use client';
-
 import Link from 'next/link';
-import { useLocale } from 'next-intl';
+import { getLocale } from 'next-intl/server';
 import { ARTICLES, TELEGRAM_URL, type Locale } from '../../lib/articles';
 import { NAV_UI, SERVICE_PAGES } from '../../lib/pages';
 
@@ -11,8 +9,8 @@ const T: Record<Locale, { title: string; text: string; home: string; popular: st
   en: { title: 'Page not found', text: 'The link may be outdated or the address mistyped. Here is what the site has:', home: 'Home', popular: 'Popular articles', write: 'Message on Telegram' },
 };
 
-export default function NotFound() {
-  const raw = useLocale();
+export default async function NotFound() {
+  const raw = await getLocale().catch(() => 'uk');
   const locale: Locale = raw === 'ru' || raw === 'en' ? raw : 'uk';
   const t = T[locale];
   const nav = NAV_UI[locale];
