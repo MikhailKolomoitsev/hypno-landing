@@ -94,7 +94,10 @@
     "notFor1": "Acute psychotic states and schizophrenia",
     "notFor2": "Severe depression with suicidal ideation",
     "notFor3": "Severe epilepsy",
-    "notFor4": "Alcohol or drug intoxication"
+    "notFor4": "Alcohol or drug intoxication",
+    "enlarge": "Enlarge",
+    "close": "Close",
+    "certAlt": "Certified Master Hypnotherapist certificate — International Academy of Hypnosis"
   },
   "cta": {
     "badge": "100% Results Guarantee",

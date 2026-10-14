@@ -31,7 +31,7 @@ export async function generateMetadata({
 
   const titles: Record<Locale, string> = {
     ru: "Гипнотерапия — Михаил Коломойцев | kolomoitsev.com",
-    uk: "Гіпнотерапія — Михайло Коломойцев | kolomoitsev.com",
+    uk: "Гіпнотерапія — Михайло Коломийцев | kolomoitsev.com",
     en: "Hypnotherapy — Mykhailo Kolomoitsev | kolomoitsev.com",
   };
   const descriptions: Record<Locale, string> = {

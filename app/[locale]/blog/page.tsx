@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { ARTICLES, BASE_URL, LOCALES, TELEGRAM_URL, isLocale, type Locale } from '../../../lib/articles';
 import SiteFooter from '../components/SiteFooter';
+import JsonLd from '../../components/JsonLd';
 
 const T: Record<Locale, { title: string; description: string; h1a: string; h1b: string; lead: string; home: string; book: string; crumb: string }> = {
   uk: {
@@ -54,9 +55,30 @@ export default async function BlogIndex({ params }: { params: Promise<{ locale: 
   const t = T[locale];
   const articles = [...ARTICLES].sort((a, b) => b.published.localeCompare(a.published));
 
+  const jsonLd = [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'CollectionPage',
+      name: t.title.replace(/\s*\|\s*kolomoitsev\.com$/, ''),
+      description: t.description,
+      url: `${BASE_URL}/${locale}/blog`,
+      inLanguage: locale,
+      hasPart: articles.map((a) => ({ '@type': 'Article', headline: a.title[locale], url: `${BASE_URL}/${locale}/${a.slug}`, datePublished: a.published })),
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: t.home, item: `${BASE_URL}/${locale}` },
+        { '@type': 'ListItem', position: 2, name: t.crumb, item: `${BASE_URL}/${locale}/blog` },
+      ],
+    },
+  ];
+
   return (
     <div className="min-h-screen bg-[#080810] text-white">
       <div className="site-bg" />
+      <JsonLd data={jsonLd} />
 
       <header className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-4 border-b border-white/5 bg-black/30 backdrop-blur-md">
         <Link href={`/${locale}`} className="text-sm text-gray-400 hover:text-white transition-colors flex items-center gap-2">

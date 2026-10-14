@@ -358,13 +358,13 @@ export default function Home() {
               >
                 <Image
                   src="/certificate.jpg"
-                  alt="Сертифікат Certified Master Hypnotherapist — International Academy of Hypnosis"
+                  alt={t('about.certAlt')}
                   fill
                   className="object-cover transition-transform duration-300 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
                   <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/60 text-white text-xs px-3 py-1.5 rounded-full backdrop-blur-sm">
-                    Збільшити
+                    {t('about.enlarge')}
                   </span>
                 </div>
               </button>
@@ -531,7 +531,7 @@ export default function Home() {
                 <a href={`/${locale}/blog`} className="text-green-500/80 hover:text-green-400 transition-colors">{NAV_UI[locale].allArticles} →</a>
               </div>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4 text-xs text-gray-600">
-                <span>Михайло Коломийцев · Гіпнотерапевт</span>
+                <span>{NAV_UI[locale] ? ({ uk: 'Михайло Коломийцев · Гіпнотерапевт', ru: 'Михаил Коломойцев · Гипнотерапевт', en: 'Mykhailo Kolomoitsev · Hypnotherapist' } as Record<Locale, string>)[locale] : ''}</span>
                 <span className="hidden sm:inline text-white/10">·</span>
                 <a
                   href="https://t.me/mykhailo_elmejor"
@@ -572,12 +572,12 @@ export default function Home() {
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
               </svg>
-              Закрити
+              {t('about.close')}
             </button>
             <div className="relative w-full aspect-[3/2] rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
               <Image
                 src="/certificate.jpg"
-                alt="Сертифікат Certified Master Hypnotherapist — International Academy of Hypnosis"
+                alt={t('about.certAlt')}
                 fill
                 className="object-contain bg-white"
               />

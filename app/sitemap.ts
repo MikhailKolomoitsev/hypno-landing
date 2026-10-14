@@ -55,7 +55,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
   );
 
   return [
-    { url: BASE_URL, lastModified: SITE_UPDATED, changeFrequency: "monthly" as const, priority: 1 },
     ...mainPages,
     ...seoPages,
     ...blogIndex,
